@@ -2,10 +2,10 @@
 
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-const uniqueValidator = require('mongoose-unique-validator')
+import uniqueValidator from 'mongoose-unique-validator';
 
 
-@Schema()
+@Schema({collection : 'teachers'})
 export class Teacher extends Document{
    
     @Prop()
@@ -21,7 +21,31 @@ export class Teacher extends Document{
     contactNumber: number
 
     @Prop()
+    gender : string
+
+    @Prop()
+    religion: string
+
+    @Prop()
+    dob : Date
+
+    @Prop()
+    age : number
+
+    @Prop()
+    address : string
+
+    @Prop()
+    employeeId : string
+
+    @Prop()
     salary: number
+
+    @Prop({default : new Date()})
+    joiningDate : Date
+
+    @Prop({default : true})
+    isTeacher : boolean
 }
 
 export const TeacherSchema = SchemaFactory.createForClass(Teacher);
