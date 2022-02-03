@@ -1,39 +1,39 @@
 //Schema for mongodb
 
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
 import * as uniqueValidator from 'mongoose-unique-validator';
 
-@Schema({collection : 'students'})
-export class Student extends Document{
-   
+@Schema({ collection: 'students' })
+export class Student extends Document {
+
     @Prop()
     name: string
 
-    @Prop({unique : true})
+    @Prop({ unique: true })
     email: string
 
     @Prop()
     password: string
 
     @Prop()
-    gender : string
+    gender: string
 
     @Prop()
-    religion : string
+    religion: string
 
     @Prop()
     dob: Date
 
     @Prop()
-    age : string
+    age: string
 
     @Prop()
     address: string
 
     @Prop()
-    rollNumber:  number
+    rollNumber: number
 
     @Prop()
     class: number
@@ -41,14 +41,14 @@ export class Student extends Document{
     @Prop()
     section: string
 
-    @Prop({default : true})
+    @Prop({ default: true })
     isStudent: boolean
 
-    @Prop({default : new Date()})
-    joiningDate : Date
+    @Prop({ default: new Date() })
+    joiningDate: Date
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'parents' })
-    parentId : mongoose.Schema.Types.ObjectId 
+    parentId: mongoose.Schema.Types.ObjectId
 }
 
 export const StudentSchema = SchemaFactory.createForClass(Student);

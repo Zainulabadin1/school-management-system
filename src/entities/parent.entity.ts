@@ -1,26 +1,26 @@
 //Schema for mongodb
 
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as uniqueValidator from 'mongoose-unique-validator';
 
-@Schema({collection : 'parents'})
-export class Parent extends Document{
-   
+@Schema({ collection: 'parents' })
+export class Parent extends Document {
+
     @Prop()
     name: string
 
-    @Prop({unique : true})
+    @Prop({ unique: true })
     email: string
 
     @Prop()
     password: string
 
     @Prop()
-    gender : string
+    gender: string
 
     @Prop()
-    contactNumber : number
+    contactNumber: number
 
 }
 

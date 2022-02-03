@@ -1,17 +1,17 @@
 //Schema for mongodb
 
-import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as uniqueValidator from 'mongoose-unique-validator';
 
 
-@Schema({collection : 'teachers'})
-export class Teacher extends Document{
-   
+@Schema({ collection: 'teachers' })
+export class Teacher extends Document {
+
     @Prop()
     name: string
 
-    @Prop({unique : true})
+    @Prop({ unique: true })
     email: string
 
     @Prop()
@@ -21,31 +21,31 @@ export class Teacher extends Document{
     contactNumber: number
 
     @Prop()
-    gender : string
+    gender: string
 
     @Prop()
     religion: string
 
     @Prop()
-    dob : Date
+    dob: Date
 
     @Prop()
-    age : number
+    age: number
 
     @Prop()
-    address : string
+    address: string
 
     @Prop()
-    employeeId : string
+    employeeId: string
 
     @Prop()
     salary: number
 
-    @Prop({default : new Date()})
-    joiningDate : Date
+    @Prop({ default: new Date() })
+    joiningDate: Date
 
-    @Prop({default : true})
-    isTeacher : boolean
+    @Prop({ default: true })
+    isTeacher: boolean
 }
 
 export const TeacherSchema = SchemaFactory.createForClass(Teacher);

@@ -6,7 +6,7 @@ import { UpdateAccountantInput } from './dto/update-accountant.input';
 
 @Resolver(() => Accountant)
 export class AccountantResolver {
-  constructor(private readonly accountantService: AccountantService) {}
+  constructor(private readonly accountantService: AccountantService) { }
 
   @Mutation(() => Accountant)
   createAccountant(@Args('createAccountantInput') createAccountantInput: CreateAccountantInput) {
