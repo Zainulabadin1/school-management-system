@@ -3,8 +3,7 @@
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { Document } from 'mongoose';
-import uniqueValidator from 'mongoose-unique-validator';
-
+import * as uniqueValidator from 'mongoose-unique-validator';
 
 @Schema({collection : 'students'})
 export class Student extends Document{

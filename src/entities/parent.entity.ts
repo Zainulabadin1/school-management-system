@@ -2,7 +2,7 @@
 
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import uniqueValidator from 'mongoose-unique-validator';
+import * as uniqueValidator from 'mongoose-unique-validator';
 
 @Schema({collection : 'parents'})
 export class Parent extends Document{

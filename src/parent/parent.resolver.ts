@@ -1,6 +1,6 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { ParentService } from './parent.service';
-import { Parent } from './entities/parent.entity';
+import { Parent } from '../entities/parent.entity';
 import { CreateParentInput } from './dto/create-parent.input';
 import { UpdateParentInput } from './dto/update-parent.input';
 

@@ -2,10 +2,10 @@
 
 import {Prop, Schema, SchemaFactory} from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-const uniqueValidator = require('mongoose-unique-validator')
+import * as uniqueValidator from 'mongoose-unique-validator';
 
 
-@Schema()
+@Schema({collection : 'admin'})
 export class Admin extends Document{
    
     @Prop()
