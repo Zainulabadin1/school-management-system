@@ -1,8 +1,8 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { TeacherService } from './teacher.service';
 import { Teacher } from '../entities/teacher.entity';
-import { CreateTeacherInput } from './dto/create-teacher.input';
-import { UpdateTeacherInput } from './dto/update-teacher.input';
+import { CreateTeacherInput } from './inputs/create-teacher.input';
+import { UpdateTeacherInput } from './inputs/update-teacher.input';
 
 @Resolver(() => Teacher)
 export class TeacherResolver {

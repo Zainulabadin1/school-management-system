@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateTeacherInput } from './dto/create-teacher.input';
-import { UpdateTeacherInput } from './dto/update-teacher.input';
+import { CreateTeacherInput } from './inputs/create-teacher.input';
+import { UpdateTeacherInput } from './inputs/update-teacher.input';
 
 @Injectable()
 export class TeacherService {

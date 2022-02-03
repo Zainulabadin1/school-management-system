@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateParentInput } from './dto/create-parent.input';
-import { UpdateParentInput } from './dto/update-parent.input';
+import { CreateParentInput } from './inputs/create-parent.input';
+import { UpdateParentInput } from './inputs/update-parent.input';
 
 @Injectable()
 export class ParentService {

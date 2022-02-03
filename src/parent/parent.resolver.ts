@@ -1,8 +1,8 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { ParentService } from './parent.service';
 import { Parent } from '../entities/parent.entity';
-import { CreateParentInput } from './dto/create-parent.input';
-import { UpdateParentInput } from './dto/update-parent.input';
+import { CreateParentInput } from './inputs/create-parent.input';
+import { UpdateParentInput } from './inputs/update-parent.input';
 
 @Resolver(() => Parent)
 export class ParentResolver {

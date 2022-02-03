@@ -1,8 +1,8 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AccountantService } from './accountant.service';
 import { Accountant } from '../entities/accountant.entity';
-import { CreateAccountantInput } from './dto/create-accountant.input';
-import { UpdateAccountantInput } from './dto/update-accountant.input';
+import { CreateAccountantInput } from './inputs/create-accountant.input';
+import { UpdateAccountantInput } from './inputs/update-accountant.input';
 
 @Resolver(() => Accountant)
 export class AccountantResolver {

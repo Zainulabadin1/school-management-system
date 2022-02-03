@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAdminInput } from './dto/create-admin.input';
-import { UpdateAdminInput } from './dto/update-admin.input';
+import { CreateAdminInput } from './inputs/create-admin.input';
+import { UpdateAdminInput } from './inputs/update-admin.input';
 
 @Injectable()
 export class AdminService {
