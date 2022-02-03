@@ -9,10 +9,10 @@ import * as mongoose from 'mongoose';
 @Schema({ collection: 'teachers-attendance' })
 export class teacherAttendance extends Document {
 
-    @Prop({type:mongoose.Schema.Types.ObjectId, ref: 'teachers' })
-    teacherId : mongoose.Schema.Types.ObjectId
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'teachers' })
+    teacherId: mongoose.Schema.Types.ObjectId
 
-    @Prop({ default: false})
+    @Prop({ default: false })
     isPresent: boolean
 
     @Prop({ default: new Date() })

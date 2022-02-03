@@ -21,7 +21,7 @@ export class Timetable extends Document {
     @Prop()
     class: string
 
-    @Prop({type: mongoose.Schema.Types.ObjectId, ref:'subjects'})
+    @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'subjects' })
     subject: mongoose.Schema.Types.ObjectId
 
     @Prop()

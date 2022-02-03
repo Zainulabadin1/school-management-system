@@ -6,20 +6,14 @@ import * as mongoose from 'mongoose';
 
 
 
-@Schema({ collection: 'quizzes' })
-export class Quizzes extends Document {
+@Schema({ collection: 'results' })
+export class Results extends Document {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'students' })
     studentId: mongoose.Schema.Types.ObjectId
 
     @Prop()
-    quizNumber: number
-
-    @Prop()
     totalMarks: number
-
-    @Prop({ default: false })
-    isSubmitted: boolean
 
     @Prop({ default: 0 })
     obtainedMarks: number
@@ -29,6 +23,9 @@ export class Quizzes extends Document {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'subjects' })
     subject: mongoose.Schema.Types.ObjectId
+
+    @Prop()
+    percentage: number
 }
 
-export const QuizzesSchema = SchemaFactory.createForClass(Quizzes);
+export const ResultsSchema = SchemaFactory.createForClass(Results);
