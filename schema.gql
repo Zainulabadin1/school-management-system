@@ -65,6 +65,12 @@ type AccountantDto {
   isAccountant: Boolean!
 }
 
+type SubjectDto {
+  _id: String!
+  name: String!
+  subjectCode: String!
+}
+
 type Query {
   admin: [AdminDto!]!
 }
@@ -74,6 +80,7 @@ type Mutation {
   createTeacher(createTeacherInput: CreateTeacherInput!): TeacherDto!
   createStudent(createStudentInput: CreateStudentInput!): StudentDto!
   createAccountant(createAccountantInput: CreateAccountantInput!): AccountantDto!
+  createSubject(createSubjectInput: CreateSubjectInput!): SubjectDto!
 }
 
 input CreateAdminInput {
@@ -129,4 +136,9 @@ input CreateAccountantInput {
   salary: Float!
   joiningDate: DateTime
   isAccountant: Boolean
+}
+
+input CreateSubjectInput {
+  name: String!
+  subjectCode: String!
 }

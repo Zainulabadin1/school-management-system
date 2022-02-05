@@ -6,12 +6,14 @@ import { CreateAdminInput } from './inputs/create-admin.input';
 import { CreateTeacherInput } from './inputs/create-teacher.input';
 import { CreateStudentInput } from './inputs/create-student.input';
 import { CreateAccountantInput } from './inputs/create-accountant.input';
+import { CreateSubjectInput } from './inputs/create-subject.input';
 import { UpdateAdminInput } from './inputs/update-admin.input';
 
 import { AdminDto } from './dto/admin.dto';
 import {TeacherDto } from '../teacher/dto/teacher.dto';
 import { StudentDto } from '../student/dto/student.dto';
 import { AccountantDto } from '../accountant/dto/accountant.dto';
+import { SubjectDto } from '../commonDto/subject.dto';
 
 @Resolver(() => AdminDto)
 export class AdminResolver {
@@ -32,9 +34,14 @@ export class AdminResolver {
     return this.adminService.createStudent(createStudentInput);
   }
 
-  @Mutation(()=>AccountantDto)
+  @Mutation(()=> AccountantDto)
   createAccountant(@Args('createAccountantInput') createAccountantInput: CreateAccountantInput){
     return this.adminService.createAccountant(createAccountantInput);
+  }
+
+  @Mutation(()=> SubjectDto)
+  createSubject(@Args('createSubjectInput') createSubjectInput: CreateSubjectInput){
+    return this.adminService.createSubject(createSubjectInput);
   }
 
 

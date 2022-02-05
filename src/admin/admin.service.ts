@@ -6,12 +6,14 @@ import { CreateAdminInput } from './inputs/create-admin.input';
 import { CreateTeacherInput } from './inputs/create-teacher.input';
 import { CreateStudentInput } from './inputs/create-student.input';
 import { CreateAccountantInput } from './inputs/create-accountant.input';
+import { CreateSubjectInput } from './inputs/create-subject.input';
 import { UpdateAdminInput } from './inputs/update-admin.input';
 
 import { Admin } from '../entities/admin.entity';
 import { Teacher } from '../entities/teacher.entity';
 import { Student } from '../entities/student.entity';
 import { Accountant } from '../entities/accountant.entity';
+import { Subjects } from '../entities/subject.entity';
 
 @Injectable()
 export class AdminService {
@@ -19,7 +21,8 @@ export class AdminService {
     @InjectModel(Admin.name) private readonly adminModel: Model<Admin>,
     @InjectModel(Teacher.name) private readonly teacherModel: Model<Teacher>,
     @InjectModel(Student.name) private readonly studentModel: Model<Student>,
-    @InjectModel(Accountant.name) private readonly accountantModel: Model<Accountant>
+    @InjectModel(Accountant.name) private readonly accountantModel: Model<Accountant>,
+    @InjectModel(Subjects.name) private readonly subjectsModel: Model<Subjects>
   ) { }
 
 
@@ -41,6 +44,11 @@ export class AdminService {
   async createAccountant(createAccountant: CreateAccountantInput): Promise<Accountant> {
     const accountant = await new this.accountantModel(createAccountant)
     return accountant.save();
+  }
+
+  async createSubject( createSubject: CreateSubjectInput) : Promise<Subjects> {
+    const subject = await new this.subjectsModel(createSubject)
+    return subject.save();
   }
 
 
