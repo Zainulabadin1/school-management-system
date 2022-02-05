@@ -8,6 +8,7 @@ import { Teacher, TeacherSchema } from '../entities/teacher.entity';
 import { Student, StudentSchema } from '../entities/student.entity';
 import { Accountant, AccountantSchema } from '../entities/accountant.entity';
 import { Subjects, SubjectsSchema } from '../entities/subject.entity';
+import { Timetable, TimetableSchema } from '../entities/timteable.entity';
 
 @Module({
   imports: [
@@ -22,9 +23,12 @@ import { Subjects, SubjectsSchema } from '../entities/subject.entity';
 
     MongooseModule.forFeature([
       { name: Accountant.name, schema: AccountantSchema }]),
-      
+
     MongooseModule.forFeature([
-      { name: Subjects.name, schema: SubjectsSchema }])
+      { name: Subjects.name, schema: SubjectsSchema }]),
+
+    MongooseModule.forFeature([
+      { name: Timetable.name, schema: TimetableSchema }])
   ],
   providers: [AdminResolver, AdminService]
 })
