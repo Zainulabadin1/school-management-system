@@ -1,11 +1,8 @@
-import { Field, ObjectType, ID } from "@nestjs/graphql";
+import { InputType, Field, ID } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
 
-@ObjectType()
-export class StudentDto {
-    @Field()
-    _id: string;
-
+@InputType()
+export class CreateStudentInput {
     @Field()
     name: string
 
@@ -39,13 +36,13 @@ export class StudentDto {
     @Field()
     section: string
 
-    @Field()
+    @Field({nullable: true})
     isStudent: boolean
 
-    @Field()
+    @Field({nullable: true})
     joiningDate: Date
 
-    @Field(() => ID)
+    @Field(() => ID, {nullable:true})
     parentId: ObjectId
-
+  
 }

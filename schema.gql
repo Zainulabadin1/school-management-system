@@ -1,0 +1,132 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AdminDto {
+  name: String!
+  email: String!
+  password: String!
+}
+
+type TeacherDto {
+  _id: String!
+  name: String!
+  email: String!
+  password: String!
+  contactNumber: Float!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  age: Float!
+  address: String!
+  employeeId: String!
+  salary: Float!
+  joiningDate: DateTime!
+  isTeacher: Boolean!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type StudentDto {
+  _id: String!
+  name: String!
+  email: String!
+  password: String!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  age: String!
+  address: String!
+  rollNumber: Float!
+  class: Float!
+  section: String!
+  isStudent: Boolean!
+  joiningDate: DateTime!
+  parentId: ID!
+}
+
+type AccountantDto {
+  _id: String!
+  name: String!
+  email: String!
+  password: String!
+  contactNumber: Float!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  age: Float!
+  address: String!
+  employeeId: String!
+  salary: Float!
+  joiningDate: DateTime!
+  isAccountant: Boolean!
+}
+
+type Query {
+  admin: [AdminDto!]!
+}
+
+type Mutation {
+  createAdmin(createAdminInput: CreateAdminInput!): AdminDto!
+  createTeacher(createTeacherInput: CreateTeacherInput!): TeacherDto!
+  createStudent(createStudentInput: CreateStudentInput!): StudentDto!
+  createAccountant(createAccountantInput: CreateAccountantInput!): AccountantDto!
+}
+
+input CreateAdminInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input CreateTeacherInput {
+  name: String!
+  email: String!
+  password: String!
+  contactNumber: Float!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  age: Float!
+  address: String!
+  employeeId: String!
+  salary: Float!
+  joiningDate: DateTime
+  isTeacher: Boolean
+}
+
+input CreateStudentInput {
+  name: String!
+  email: String!
+  password: String!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  age: String!
+  address: String!
+  rollNumber: Float!
+  class: Float!
+  section: String!
+  isStudent: Boolean
+  joiningDate: DateTime
+  parentId: ID
+}
+
+input CreateAccountantInput {
+  name: String!
+  email: String!
+  password: String!
+  contactNumber: Float!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  age: Float!
+  address: String!
+  employeeId: String!
+  salary: Float!
+  joiningDate: DateTime
+  isAccountant: Boolean
+}

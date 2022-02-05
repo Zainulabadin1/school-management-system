@@ -1,10 +1,7 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { InputType, Field, ID } from '@nestjs/graphql';
 
-@ObjectType()
-export class AccountantDto{
-    @Field()
-    _id: string;
-
+@InputType()
+export class CreateAccountantInput {
     @Field()
     name: string
 
@@ -38,9 +35,10 @@ export class AccountantDto{
     @Field()
     salary: number
 
-    @Field()
+    @Field({nullable: true})
     joiningDate: Date
 
-    @Field()
-    isAccountant: boolean
+    @Field({nullable: true})
+    isAccountant: boolean 
+  
 }

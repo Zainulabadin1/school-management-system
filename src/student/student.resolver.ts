@@ -8,28 +8,28 @@ import { UpdateStudentInput } from './inputs/update-student.input';
 export class StudentResolver {
   constructor(private readonly studentService: StudentService) {}
 
-  @Mutation(() => Student)
-  createStudent(@Args('createStudentInput') createStudentInput: CreateStudentInput) {
-    return this.studentService.create(createStudentInput);
-  }
+  // @Mutation(() => Student)
+  // createStudent(@Args('createStudentInput') createStudentInput: CreateStudentInput) {
+  //   return this.studentService.create(createStudentInput);
+  // }
 
-  @Query(() => [Student], { name: 'student' })
-  findAll() {
-    return this.studentService.findAll();
-  }
+  // @Query(() => [Student], { name: 'student' })
+  // findAll() {
+  //   return this.studentService.findAll();
+  // }
 
-  @Query(() => Student, { name: 'student' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.studentService.findOne(id);
-  }
+  // @Query(() => Student, { name: 'student' })
+  // findOne(@Args('id', { type: () => Int }) id: number) {
+  //   return this.studentService.findOne(id);
+  // }
 
-  @Mutation(() => Student)
-  updateStudent(@Args('updateStudentInput') updateStudentInput: UpdateStudentInput) {
-    return this.studentService.update(updateStudentInput.id, updateStudentInput);
-  }
+  // @Mutation(() => Student)
+  // updateStudent(@Args('updateStudentInput') updateStudentInput: UpdateStudentInput) {
+  //   return this.studentService.update(updateStudentInput.id, updateStudentInput);
+  // }
 
-  @Mutation(() => Student)
-  removeStudent(@Args('id', { type: () => Int }) id: number) {
-    return this.studentService.remove(id);
-  }
+  // @Mutation(() => Student)
+  // removeStudent(@Args('id', { type: () => Int }) id: number) {
+  //   return this.studentService.remove(id);
+  // }
 }

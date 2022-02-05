@@ -8,28 +8,28 @@ import { UpdateParentInput } from './inputs/update-parent.input';
 export class ParentResolver {
   constructor(private readonly parentService: ParentService) {}
 
-  @Mutation(() => Parent)
-  createParent(@Args('createParentInput') createParentInput: CreateParentInput) {
-    return this.parentService.create(createParentInput);
-  }
+  // @Mutation(() => Parent)
+  // createParent(@Args('createParentInput') createParentInput: CreateParentInput) {
+  //   return this.parentService.create(createParentInput);
+  // }
 
-  @Query(() => [Parent], { name: 'parent' })
-  findAll() {
-    return this.parentService.findAll();
-  }
+  // @Query(() => [Parent], { name: 'parent' })
+  // findAll() {
+  //   return this.parentService.findAll();
+  // }
 
-  @Query(() => Parent, { name: 'parent' })
-  findOne(@Args('id', { type: () => Int }) id: number) {
-    return this.parentService.findOne(id);
-  }
+  // @Query(() => Parent, { name: 'parent' })
+  // findOne(@Args('id', { type: () => Int }) id: number) {
+  //   return this.parentService.findOne(id);
+  // }
 
-  @Mutation(() => Parent)
-  updateParent(@Args('updateParentInput') updateParentInput: UpdateParentInput) {
-    return this.parentService.update(updateParentInput.id, updateParentInput);
-  }
+  // @Mutation(() => Parent)
+  // updateParent(@Args('updateParentInput') updateParentInput: UpdateParentInput) {
+  //   return this.parentService.update(updateParentInput.id, updateParentInput);
+  // }
 
-  @Mutation(() => Parent)
-  removeParent(@Args('id', { type: () => Int }) id: number) {
-    return this.parentService.remove(id);
-  }
+  // @Mutation(() => Parent)
+  // removeParent(@Args('id', { type: () => Int }) id: number) {
+  //   return this.parentService.remove(id);
+  // }
 }
