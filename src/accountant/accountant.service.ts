@@ -1,9 +1,27 @@
 import { Injectable } from '@nestjs/common';
-import { CreateAccountantInput } from './inputs/create-accountant.input';
-import { UpdateAccountantInput } from './inputs/update-accountant.input';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+
+import { LoginAccountantInput } from './inputs/login-accountant.input';
+
+import { Accountant } from '../entities/accountant.entity';
 
 @Injectable()
 export class AccountantService {
+  constructor(
+    @InjectModel(Accountant.name) private accountantModel: Model<Accountant>,
+  ){}
+
+  async loginAccountant(loginAccountant: LoginAccountantInput){
+
+    console.log("credentials are : " , loginAccountant.email , loginAccountant.password)
+    return await this.accountantModel.find()
+    // console.log("result here", result)
+    // return result;
+  }
+
+
   // create(createAccountantInput: CreateAccountantInput) {
   //   return 'This action adds a new accountant';
   // }

@@ -1,10 +1,10 @@
-import { Field, ObjectType } from "@nestjs/graphql";
-import * as mongoose from 'mongoose';
+import { Field, ObjectType, ID } from "@nestjs/graphql";
+import { ObjectId } from 'mongoose';
 
 @ObjectType()
-export class timetableDto{
-    @Field()
-    teacherId: mongoose.Schema.Types.ObjectId
+export class TimetableDto{
+    @Field(() => ID)
+    teacherId: ObjectId
 
     @Field()
     day: string
@@ -15,8 +15,8 @@ export class timetableDto{
     @Field()
     class: string
 
-    @Field()
-    subject: mongoose.Schema.Types.ObjectId
+    @Field(() => ID)
+    subject: ObjectId
 
     @Field()
     roomNo: number

@@ -1,12 +1,19 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { AccountantService } from './accountant.service';
-import { Accountant } from '../entities/accountant.entity';
-import { CreateAccountantInput } from './inputs/create-accountant.input';
-import { UpdateAccountantInput } from './inputs/update-accountant.input';
 
-@Resolver(() => Accountant)
+import { LoginAccountantInput } from './inputs/login-accountant.input';
+
+import { AccountantDto } from './dto/accountant.dto';
+
+
+@Resolver(() => AccountantDto)
 export class AccountantResolver {
   constructor(private readonly accountantService: AccountantService) { }
+
+  @Mutation(() => [AccountantDto])
+  async loginAccountant(@Args('loginAccountantInput') loginAccountantInput: LoginAccountantInput) {
+    return await this.accountantService.loginAccountant(loginAccountantInput);
+  }
 
   // @Mutation(() => Accountant)
   // createAccountant(@Args('createAccountantInput') createAccountantInput: CreateAccountantInput) {

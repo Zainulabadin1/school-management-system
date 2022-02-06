@@ -1,12 +1,20 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { ParentService } from './parent.service';
 import { Parent } from '../entities/parent.entity';
-import { CreateParentInput } from './inputs/create-parent.input';
-import { UpdateParentInput } from './inputs/update-parent.input';
 
-@Resolver(() => Parent)
+import { LoginParentInput } from './inputs/login-parent.input';
+
+import { ParentDto } from './dto/parent.dto';
+
+
+@Resolver(() => ParentDto)
 export class ParentResolver {
   constructor(private readonly parentService: ParentService) {}
+
+  @Mutation(()=> [ParentDto])
+  loginParent(@Args('loginParentInput') loginParentInput: LoginParentInput){
+    return this.parentService.loginParent(loginParentInput);
+  }
 
   // @Mutation(() => Parent)
   // createParent(@Args('createParentInput') createParentInput: CreateParentInput) {

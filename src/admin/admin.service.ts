@@ -7,13 +7,19 @@ import { CreateTeacherInput } from './inputs/create-teacher.input';
 import { CreateStudentInput } from './inputs/create-student.input';
 import { CreateAccountantInput } from './inputs/create-accountant.input';
 import { CreateSubjectInput } from './inputs/create-subject.input';
-import { UpdateAdminInput } from './inputs/update-admin.input';
+import { CreateTimetableInput } from './inputs/create-timetable.input';
+import { CreateParentInput } from '../parent/inputs/create-parent.input';
+import { LoginAdminInput } from './inputs/login-admin.input';
 
 import { Admin } from '../entities/admin.entity';
 import { Teacher } from '../entities/teacher.entity';
 import { Student } from '../entities/student.entity';
+import { Parent } from '../entities/parent.entity';
 import { Accountant } from '../entities/accountant.entity';
 import { Subjects } from '../entities/subject.entity';
+import { Timetable } from '../entities/timteable.entity';
+import { createParentInput } from './inputs/createParent.input';
+
 
 @Injectable()
 export class AdminService {
@@ -22,7 +28,9 @@ export class AdminService {
     @InjectModel(Teacher.name) private readonly teacherModel: Model<Teacher>,
     @InjectModel(Student.name) private readonly studentModel: Model<Student>,
     @InjectModel(Accountant.name) private readonly accountantModel: Model<Accountant>,
-    @InjectModel(Subjects.name) private readonly subjectsModel: Model<Subjects>
+    @InjectModel(Subjects.name) private readonly subjectsModel: Model<Subjects>,
+    @InjectModel(Timetable.name) private readonly timetableModel: Model<Timetable>,
+    @InjectModel(Parent.name) private readonly parentModel: Model<Parent>
   ) { }
 
 
@@ -46,10 +54,35 @@ export class AdminService {
     return accountant.save();
   }
 
-  async createSubject( createSubject: CreateSubjectInput) : Promise<Subjects> {
+  async createSubject(createSubject: CreateSubjectInput): Promise<Subjects> {
     const subject = await new this.subjectsModel(createSubject)
     return subject.save();
   }
+
+  async createParent( parentInput : createParentInput)
+  {
+    const parent = new this.parentModel(parentInput)
+    return parent.save()
+  }
+
+  async createTimetable(createTimetable: CreateTimetableInput): Promise<Timetable> {
+    const timetable = await new this.timetableModel(createTimetable)
+    return timetable.save();
+  }
+
+  async loginAdmin(loginAdmin: LoginAdminInput){
+    return await this.adminModel.find({
+      $and: [
+        { email: { $eq: loginAdmin.email } },
+        { password: { $eq: loginAdmin.password } }
+      ]
+    })
+  }
+
+
+
+
+
 
 
   findAll() {

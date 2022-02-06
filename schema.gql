@@ -71,6 +71,24 @@ type SubjectDto {
   subjectCode: String!
 }
 
+type TimetableDto {
+  teacherId: ID!
+  day: String!
+  slot: String!
+  class: String!
+  subject: ID!
+  roomNo: Float!
+}
+
+type ParentDto {
+  _id: String!
+  name: String!
+  email: String!
+  password: String!
+  gender: String!
+  contactNumber: Float!
+}
+
 type Query {
   admin: [AdminDto!]!
 }
@@ -79,8 +97,13 @@ type Mutation {
   createAdmin(createAdminInput: CreateAdminInput!): AdminDto!
   createTeacher(createTeacherInput: CreateTeacherInput!): TeacherDto!
   createStudent(createStudentInput: CreateStudentInput!): StudentDto!
+  createParent(input: createParentInput!): ParentDto!
   createAccountant(createAccountantInput: CreateAccountantInput!): AccountantDto!
   createSubject(createSubjectInput: CreateSubjectInput!): SubjectDto!
+  createTimetable(createTimetableInput: CreateTimetableInput!): TimetableDto!
+  loginAdmin(loginAdminInput: LoginAdminInput!): [AdminDto!]!
+  loginAccountant(loginAccountantInput: LoginAccountantInput!): [AccountantDto!]!
+  loginParent(loginParentInput: LoginParentInput!): [ParentDto!]!
 }
 
 input CreateAdminInput {
@@ -122,6 +145,14 @@ input CreateStudentInput {
   parentId: ID
 }
 
+input createParentInput {
+  name: String!
+  email: String!
+  password: String!
+  gender: String!
+  contactNumber: Float!
+}
+
 input CreateAccountantInput {
   name: String!
   email: String!
@@ -141,4 +172,28 @@ input CreateAccountantInput {
 input CreateSubjectInput {
   name: String!
   subjectCode: String!
+}
+
+input CreateTimetableInput {
+  teacherId: ID!
+  day: String!
+  slot: String!
+  class: String!
+  subject: ID!
+  roomNo: Float!
+}
+
+input LoginAdminInput {
+  email: String!
+  password: String!
+}
+
+input LoginAccountantInput {
+  email: String!
+  password: String!
+}
+
+input LoginParentInput {
+  email: String!
+  password: String!
 }

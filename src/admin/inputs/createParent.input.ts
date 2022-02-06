@@ -1,10 +1,7 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, InputType } from "@nestjs/graphql";
 
-@ObjectType()
-export class ParentDto{
-    @Field()
-    _id: string
-
+@InputType()
+export class createParentInput{
     @Field()
     name: string
 

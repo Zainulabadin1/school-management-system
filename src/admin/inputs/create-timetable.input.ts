@@ -15,10 +15,10 @@ export class CreateTimetableInput {
     @Field()
     class: string
 
-    @Field()
+    @Field(() => ID)
     subject: ObjectId
 
-    @Field(() => ID)
+    @Field()
     roomNo: number
   
 }
