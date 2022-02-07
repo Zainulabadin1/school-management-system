@@ -23,7 +23,7 @@ export class CreateAccountantInput {
     @Field()
     dob: Date
 
-    @Field()
+    @Field({nullable: true})
     age: number
 
     @Field()

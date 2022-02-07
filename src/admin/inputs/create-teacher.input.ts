@@ -23,7 +23,7 @@ export class CreateTeacherInput {
     @Field()
     dob: Date
 
-    @Field()
+    @Field({nullable: true})
     age: number
 
     @Field()

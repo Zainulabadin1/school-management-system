@@ -189,7 +189,7 @@ input CreateTeacherInput {
   gender: String!
   religion: String!
   dob: DateTime!
-  age: Float!
+  age: Float
   address: String!
   employeeId: String!
   salary: Float!
@@ -204,7 +204,7 @@ input CreateStudentInput {
   gender: String!
   religion: String!
   dob: DateTime!
-  age: String!
+  age: Float
   address: String!
   rollNumber: Float!
   class: Float!
@@ -230,7 +230,7 @@ input CreateAccountantInput {
   gender: String!
   religion: String!
   dob: DateTime!
-  age: Float!
+  age: Float
   address: String!
   employeeId: String!
   salary: Float!

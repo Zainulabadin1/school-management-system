@@ -27,7 +27,7 @@ export class Student extends Document {
     dob: Date
 
     @Prop()
-    age: string
+    age: number
 
     @Prop()
     address: string

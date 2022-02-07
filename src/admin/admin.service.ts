@@ -57,6 +57,12 @@ export class AdminService {
   async createTeacher(createTeacher: CreateTeacherInput) {
     try {
       const teacher = await new this.teacherModel(createTeacher)
+
+      var today = new Date().getFullYear();
+      var dob = createTeacher.dob.getFullYear();
+      var calculatedAge = today - dob;
+      teacher.age = calculatedAge
+
       const teacherCreated = teacher.save();
       let apiResponse = {
         code: 200,
@@ -77,6 +83,12 @@ export class AdminService {
   async createStudent(createStudent: CreateStudentInput) {
     try {
       const student = await new this.studentModel(createStudent)
+
+      var today = new Date().getFullYear();
+      var dob = createStudent.dob.getFullYear();
+      var calculatedAge = today - dob;
+      student.age = calculatedAge
+
       const studentCreated = student.save();
       let apiResponse = {
         code: 200,
@@ -97,6 +109,13 @@ export class AdminService {
   async createAccountant(createAccountant: CreateAccountantInput) {
     try {
       const accountant = await new this.accountantModel(createAccountant)
+
+      var today = new Date().getFullYear();
+      var dob = createAccountant.dob.getFullYear();
+      var calculatedAge = today - dob;
+      accountant.age = calculatedAge
+
+
       const accountantCreated = accountant.save();
       let apiResponse = {
         code: 200,

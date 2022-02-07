@@ -21,8 +21,8 @@ export class CreateStudentInput {
     @Field()
     dob: Date
 
-    @Field()
-    age: string
+    @Field({nullable: true})
+    age: number
 
     @Field()
     address: string
