@@ -7,83 +7,73 @@ import { CreateStudentInput } from './inputs/create-student.input';
 import { CreateAccountantInput } from './inputs/create-accountant.input';
 import { CreateSubjectInput } from './inputs/create-subject.input';
 import { CreateTimetableInput } from './inputs/create-timetable.input';
-
-import { LoginAdminInput } from './inputs/login-admin.input';
-
-import { AdminDto } from './dto/admin.dto';
-import { TeacherDto } from '../teacher/dto/teacher.dto';
-import { StudentDto } from '../student/dto/student.dto';
-import { AccountantDto } from '../accountant/dto/accountant.dto';
-import { SubjectDto } from '../commonDto/subject.dto';
-import { TimetableDto } from '../commonDto/timetable.dto';
-import { ParentDto } from '../parent/dto/parent.dto';
 import { createParentInput } from './inputs/createParent.input';
 
 
-@Resolver(() => AdminDto)
+import { LoginAdminInput } from './inputs/login-admin.input';
+
+import { CreateAdminResponseDto } from './ApiResponsesDto/createAdminResponse.dto';
+import { CreateTeacherResponseDto } from './ApiResponsesDto/createTeacherResponse.dto';
+import { CreateStudentResponseDto } from './ApiResponsesDto/createStudentResponse.dto';
+import { CreateAccountantResponseDto } from './ApiResponsesDto/createAccountantResponse.dto';
+import { CreateSubjectResponseDto } from './ApiResponsesDto/createSubjectResponse.dto';
+import { CreateTimetableResponseDto } from './ApiResponsesDto/createTimetableResponse.dto';
+import { CreateParentResponseDto } from './ApiResponsesDto/createParentResponse.dto';
+import { loginAdminResponseDto } from './ApiResponsesDto/loginAdminResponse.dto';
+
+
+
+@Resolver()
 export class AdminResolver {
   constructor(private readonly adminService: AdminService) { }
 
-  @Mutation(() => AdminDto)
+  @Mutation(() => CreateAdminResponseDto)
   createAdmin(@Args('createAdminInput') createAdminInput: CreateAdminInput) {
     return this.adminService.create(createAdminInput);
   }
 
-  @Mutation(() => TeacherDto)
+  @Mutation(() => CreateTeacherResponseDto)
   createTeacher(@Args('createTeacherInput') createTeacherInput: CreateTeacherInput) {
     return this.adminService.createTeacher(createTeacherInput);
   }
 
-  @Mutation(() => StudentDto)
+  @Mutation(() => CreateStudentResponseDto)
   createStudent(@Args('createStudentInput') createStudentInput: CreateStudentInput) {
     return this.adminService.createStudent(createStudentInput);
   }
 
-  @Mutation(() => ParentDto)
+  @Mutation(() => CreateParentResponseDto)
   createParent(@Args('input') parentInput: createParentInput) {
     return this.adminService.createParent(parentInput);
   }
 
-  @Mutation(() => AccountantDto)
+  @Mutation(() => CreateAccountantResponseDto)
   createAccountant(@Args('createAccountantInput') createAccountantInput: CreateAccountantInput) {
     return this.adminService.createAccountant(createAccountantInput);
   }
 
-  @Mutation(() => SubjectDto)
+  @Mutation(() => CreateSubjectResponseDto)
   createSubject(@Args('createSubjectInput') createSubjectInput: CreateSubjectInput) {
     return this.adminService.createSubject(createSubjectInput);
   }
 
 
-  @Mutation(() => TimetableDto)
+  @Mutation(() => CreateTimetableResponseDto)
   createTimetable(@Args('createTimetableInput') createTimetableInput: CreateTimetableInput) {
     return this.adminService.createTimetable(createTimetableInput);
   }
 
 
-  @Mutation(() => [AdminDto])
+  @Mutation(() => loginAdminResponseDto)
   loginAdmin(@Args('loginAdminInput') loginAdminInput: LoginAdminInput) {
     return this.adminService.loginAdmin(loginAdminInput);
   }
 
 
-  @Query(() => [AdminDto], { name: 'admin' })
+  @Query(() => [CreateAdminResponseDto], { name: 'admin' })
   findAll() {
     return this.adminService.findAll();
   }
 
-  // @Query(() => Admin, { name: 'admin' })
-  // findOne(@Args('id', { type: () => Int }) id: number) {
-  //   return this.adminService.findOne(id);
-  // }
-
-  // @Mutation(() => Admin)
-  // updateAdmin(@Args('updateAdminInput') updateAdminInput: UpdateAdminInput) {
-  //   return this.adminService.update(updateAdminInput.id, updateAdminInput);
-  // }
-
-  // @Mutation(() => Admin)
-  // removeAdmin(@Args('id', { type: () => Int }) id: number) {
-  //   return this.adminService.remove(id);
-  // }
+  
 }

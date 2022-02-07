@@ -11,34 +11,44 @@ import { Accountant } from '../entities/accountant.entity';
 export class AccountantService {
   constructor(
     @InjectModel(Accountant.name) private accountantModel: Model<Accountant>,
-  ){}
+  ) { }
 
-  async loginAccountant(loginAccountant: LoginAccountantInput){
+  async loginAccountant(loginAccountant: LoginAccountantInput) {
+    try {
+      const admin = await this.accountantModel.find({
+        $and: [
+          { email: { $eq: loginAccountant.email } },
+          { password: { $eq: loginAccountant.password } }
+        ]
+      })
+      if (admin.length == 0) {
+        let apiResponse = {
+          code: 404,
+          message: "Your email or password might be wrong"
+        }
 
-    console.log("credentials are : " , loginAccountant.email , loginAccountant.password)
-    return await this.accountantModel.find()
-    // console.log("result here", result)
-    // return result;
+        return apiResponse
+      }
+      else {
+        let apiResponse = {
+          code: 200,
+          message: "You are successfully logged in"
+        }
+
+        return apiResponse
+      }
+    }
+    catch
+    {
+      let apiResponse = {
+        code: 204,
+        message: "Some error in logging in"
+      }
+
+      return apiResponse
+    }
   }
 
 
-  // create(createAccountantInput: CreateAccountantInput) {
-  //   return 'This action adds a new accountant';
-  // }
 
-  // findAll() {
-  //   return `This action returns all accountant`;
-  // }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} accountant`;
-  // }
-
-  // update(id: number, updateAccountantInput: UpdateAccountantInput) {
-  //   return `This action updates a #${id} accountant`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} accountant`;
-  // }
 }

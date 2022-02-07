@@ -8,6 +8,12 @@ type AdminDto {
   password: String!
 }
 
+type CreateAdminResponseDto {
+  code: Float!
+  message: String!
+  data: AdminDto
+}
+
 type TeacherDto {
   _id: String!
   name: String!
@@ -30,6 +36,12 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type CreateTeacherResponseDto {
+  code: Float!
+  message: String!
+  data: TeacherDto
+}
+
 type StudentDto {
   _id: String!
   name: String!
@@ -46,6 +58,12 @@ type StudentDto {
   isStudent: Boolean!
   joiningDate: DateTime!
   parentId: ID!
+}
+
+type CreateStudentResponseDto {
+  code: Float!
+  message: String!
+  data: StudentDto
 }
 
 type AccountantDto {
@@ -65,10 +83,22 @@ type AccountantDto {
   isAccountant: Boolean!
 }
 
+type CreateAccountantResponseDto {
+  code: Float!
+  message: String!
+  data: AccountantDto
+}
+
 type SubjectDto {
   _id: String!
   name: String!
   subjectCode: String!
+}
+
+type CreateSubjectResponseDto {
+  code: Float!
+  message: String!
+  data: SubjectDto
 }
 
 type TimetableDto {
@@ -80,6 +110,12 @@ type TimetableDto {
   roomNo: Float!
 }
 
+type CreateTimetableResponseDto {
+  code: Float!
+  message: String!
+  data: TimetableDto
+}
+
 type ParentDto {
   _id: String!
   name: String!
@@ -89,23 +125,54 @@ type ParentDto {
   contactNumber: Float!
 }
 
+type CreateParentResponseDto {
+  code: Float!
+  message: String!
+  data: ParentDto
+}
+
+type loginAdminResponseDto {
+  code: Float!
+  message: String!
+}
+
+type loginTeacherResponseDto {
+  code: Float!
+  message: String!
+}
+
+type loginStudentResponseDto {
+  code: Float!
+  message: String!
+}
+
+type loginAccountantResponseDto {
+  code: Float!
+  message: String!
+}
+
+type loginParentResponseDto {
+  code: Float!
+  message: String!
+}
+
 type Query {
-  admin: [AdminDto!]!
+  admin: [CreateAdminResponseDto!]!
 }
 
 type Mutation {
-  createAdmin(createAdminInput: CreateAdminInput!): AdminDto!
-  createTeacher(createTeacherInput: CreateTeacherInput!): TeacherDto!
-  createStudent(createStudentInput: CreateStudentInput!): StudentDto!
-  createParent(input: createParentInput!): ParentDto!
-  createAccountant(createAccountantInput: CreateAccountantInput!): AccountantDto!
-  createSubject(createSubjectInput: CreateSubjectInput!): SubjectDto!
-  createTimetable(createTimetableInput: CreateTimetableInput!): TimetableDto!
-  loginAdmin(loginAdminInput: LoginAdminInput!): [AdminDto!]!
-  loginTeacher(loginTeacherInput: LoginTeacherInput!): [TeacherDto!]!
-  loginStudent(loginStudentInput: LoginStudentInput!): [StudentDto!]!
-  loginAccountant(loginAccountantInput: LoginAccountantInput!): [AccountantDto!]!
-  loginParent(loginParentInput: LoginParentInput!): [ParentDto!]!
+  createAdmin(createAdminInput: CreateAdminInput!): CreateAdminResponseDto!
+  createTeacher(createTeacherInput: CreateTeacherInput!): CreateTeacherResponseDto!
+  createStudent(createStudentInput: CreateStudentInput!): CreateStudentResponseDto!
+  createParent(input: createParentInput!): CreateParentResponseDto!
+  createAccountant(createAccountantInput: CreateAccountantInput!): CreateAccountantResponseDto!
+  createSubject(createSubjectInput: CreateSubjectInput!): CreateSubjectResponseDto!
+  createTimetable(createTimetableInput: CreateTimetableInput!): CreateTimetableResponseDto!
+  loginAdmin(loginAdminInput: LoginAdminInput!): loginAdminResponseDto!
+  loginTeacher(loginTeacherInput: LoginTeacherInput!): loginTeacherResponseDto!
+  loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
+  loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
+  loginParent(loginParentInput: LoginParentInput!): loginParentResponseDto!
 }
 
 input CreateAdminInput {

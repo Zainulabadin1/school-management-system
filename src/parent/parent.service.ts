@@ -14,31 +14,40 @@ export class ParentService {
 
 
 async loginParent (loginParent : LoginParentInput){
-  return await this.parentModel.find({
+  try{ 
+    const parent =await this.parentModel.find({
     $and: [
       { email: { $eq: loginParent.email } },
       { password: { $eq: loginParent.password } }
     ]
   })
+  if (parent.length == 0) {
+    let apiResponse = {
+      code: 404,
+      message: "Your email or password might be wrong"
+    }
+
+    return apiResponse
+  }
+  else {
+    let apiResponse = {
+      code: 200,
+      message: "You are successfully logged in"
+    }
+
+    return apiResponse
+  }
+}
+catch
+{
+  let apiResponse = {
+    code: 204,
+    message: "Some error in logging in"
+  }
+
+  return apiResponse
+}
 }
 
-  // create(createParentInput: CreateParentInput) {
-  //   return 'This action adds a new parent';
-  // }
-
-  // findAll() {
-  //   return `This action returns all parent`;
-  // }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} parent`;
-  // }
-
-  // update(id: number, updateParentInput: UpdateParentInput) {
-  //   return `This action updates a #${id} parent`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} parent`;
-  // }
+  
 }

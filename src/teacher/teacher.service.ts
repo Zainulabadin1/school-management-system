@@ -9,37 +9,46 @@ import { Teacher } from '../entities/teacher.entity';
 @Injectable()
 export class TeacherService {
 
-  constructor (
+  constructor(
     @InjectModel(Teacher.name) private readonly teacherModel: Model<Teacher>,
-  ){}
+  ) { }
 
-  async loginTeacher (loginTeacher : LoginTeacherInput){
-    return await this.teacherModel.find({
-      $and: [
-        { email: { $eq: loginTeacher.email } },
-        { password: { $eq: loginTeacher.password } }
-      ]
-    })
+  async loginTeacher(loginTeacher: LoginTeacherInput) {
+    try {
+      const teacher = await this.teacherModel.find({
+        $and: [
+          { email: { $eq: loginTeacher.email } },
+          { password: { $eq: loginTeacher.password } }
+        ]
+      })
+      if (teacher.length == 0) {
+        let apiResponse = {
+          code: 404,
+          message: "Your email or password might be wrong"
+        }
+
+        return apiResponse
+      }
+      else {
+        let apiResponse = {
+          code: 200,
+          message: "You are successfully logged in"
+        }
+
+        return apiResponse
+      }
+    }
+    catch
+    {
+      let apiResponse = {
+        code: 204,
+        message: "Some error in logging in"
+      }
+
+      return apiResponse
+    }
   }
 
 
-  // create(createTeacherInput: CreateTeacherInput) {
-  //   return 'This action adds a new teacher';
-  // }
 
-  // findAll() {
-  //   return `This action returns all teacher`;
-  // }
-
-  // findOne(id: number) {
-  //   return `This action returns a #${id} teacher`;
-  // }
-
-  // update(id: number, updateTeacherInput: UpdateTeacherInput) {
-  //   return `This action updates a #${id} teacher`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} teacher`;
-  // }
 }

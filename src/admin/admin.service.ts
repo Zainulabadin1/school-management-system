@@ -8,7 +8,7 @@ import { CreateStudentInput } from './inputs/create-student.input';
 import { CreateAccountantInput } from './inputs/create-accountant.input';
 import { CreateSubjectInput } from './inputs/create-subject.input';
 import { CreateTimetableInput } from './inputs/create-timetable.input';
-import { CreateParentInput } from '../parent/inputs/create-parent.input';
+import { createParentInput } from './inputs/createParent.input';
 import { LoginAdminInput } from './inputs/login-admin.input';
 
 import { Admin } from '../entities/admin.entity';
@@ -18,7 +18,7 @@ import { Parent } from '../entities/parent.entity';
 import { Accountant } from '../entities/accountant.entity';
 import { Subjects } from '../entities/subject.entity';
 import { Timetable } from '../entities/timteable.entity';
-import { createParentInput } from './inputs/createParent.input';
+
 
 
 @Injectable()
@@ -34,50 +34,185 @@ export class AdminService {
   ) { }
 
 
-  async create(createAdmin: CreateAdminInput): Promise<Admin> {
-    const admin = await new this.adminModel(createAdmin)
-    return admin.save();
+  async create(createAdmin: CreateAdminInput) {
+    try {
+      const admin = await new this.adminModel(createAdmin)
+      const adminCreated = admin.save();
+      let apiResponse = {
+        code: 200,
+        message: "Admin is successfully added",
+        data: adminCreated
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Some error in creating student "
+      }
+      return apiResponse;
+    }
   }
 
-  async createTeacher(createTeacher: CreateTeacherInput): Promise<Teacher> {
-    const teacher = await new this.teacherModel(createTeacher)
-    return teacher.save();
+  async createTeacher(createTeacher: CreateTeacherInput) {
+    try {
+      const teacher = await new this.teacherModel(createTeacher)
+      const teacherCreated = teacher.save();
+      let apiResponse = {
+        code: 200,
+        message: "Teacher is successfully added",
+        data: teacherCreated
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Some error in creating student "
+      }
+      return apiResponse;
+    }
   }
 
-  async createStudent(createStudent: CreateStudentInput): Promise<Student> {
-    const student = await new this.studentModel(createStudent)
-    return student.save();
+  async createStudent(createStudent: CreateStudentInput) {
+    try {
+      const student = await new this.studentModel(createStudent)
+      const studentCreated = student.save();
+      let apiResponse = {
+        code: 200,
+        message: "Student is successfully added",
+        data: studentCreated
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Some error in creating student "
+      }
+      return apiResponse;
+    }
   }
 
-  async createAccountant(createAccountant: CreateAccountantInput): Promise<Accountant> {
-    const accountant = await new this.accountantModel(createAccountant)
-    return accountant.save();
+  async createAccountant(createAccountant: CreateAccountantInput) {
+    try {
+      const accountant = await new this.accountantModel(createAccountant)
+      const accountantCreated = accountant.save();
+      let apiResponse = {
+        code: 200,
+        message: "Accountant is successfully added",
+        data: accountantCreated
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Some error in creating student "
+      }
+      return apiResponse;
+    }
+
+
   }
 
-  async createSubject(createSubject: CreateSubjectInput): Promise<Subjects> {
-    const subject = await new this.subjectsModel(createSubject)
-    return subject.save();
+  async createSubject(createSubject: CreateSubjectInput) {
+    try {
+      const subject = await new this.subjectsModel(createSubject)
+      const subjectCreated = subject.save();
+      let apiResponse = {
+        code: 200,
+        message: "Subject is successfully added",
+        data: subjectCreated
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Some error in creating student "
+      }
+      return apiResponse;
+    }
   }
 
-  async createParent( parentInput : createParentInput)
-  {
-    const parent = new this.parentModel(parentInput)
-    return parent.save()
+  async createParent(parentInput: createParentInput) {
+    try {
+      const parent = new this.parentModel(parentInput)
+      const parentCreated = parent.save()
+      let apiResponse = {
+        code: 200,
+        message: "Parent is successfully added",
+        data: parentCreated
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Some error in creating student "
+      }
+      return apiResponse;
+    }
   }
 
-  async createTimetable(createTimetable: CreateTimetableInput): Promise<Timetable> {
-    const timetable = await new this.timetableModel(createTimetable)
-    return timetable.save();
+  async createTimetable(createTimetable: CreateTimetableInput) {
+    try {
+      const timetable = await new this.timetableModel(createTimetable)
+      const timetableCreated = timetable.save();
+      let apiResponse = {
+        code: 200,
+        message: "Timetable entry successfully added",
+        data: timetableCreated
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Some error in creating student "
+      }
+      return apiResponse;
+    }
   }
 
-  async loginAdmin(loginAdmin: LoginAdminInput){
-    return await this.adminModel.find({
-      $and: [
-        { email: { $eq: loginAdmin.email } },
-        { password: { $eq: loginAdmin.password } }
-      ]
-    })
+
+  async loginAdmin(loginAdmin: LoginAdminInput) {
+    try {
+      const admin = await this.adminModel.find({
+        $and: [
+          { email: { $eq: loginAdmin.email } },
+          { password: { $eq: loginAdmin.password } }
+        ]
+      })
+      if (admin.length == 0) {
+        let apiResponse = {
+          code: 404,
+          message: "Your email or password might be wrong"
+        }
+
+        return apiResponse
+      }
+      else {
+        let apiResponse = {
+          code: 200,
+          message: "You are successfully logged in"
+        }
+
+        return apiResponse
+      }
+    }
+    catch
+    {
+      let apiResponse = {
+        code: 204,
+        message: "Some error in logging in"
+      }
+
+      return apiResponse
+    }
   }
+
 
 
 
@@ -89,15 +224,5 @@ export class AdminService {
     return `This action returns all admin`;
   }
 
-  // findOne(id: number) {
-  //   return `This action returns a #${id} admin`;
-  // }
 
-  // update(id: number, updateAdminInput: UpdateAdminInput) {
-  //   return `This action updates a #${id} admin`;
-  // }
-
-  // remove(id: number) {
-  //   return `This action removes a #${id} admin`;
-  // }
 }
