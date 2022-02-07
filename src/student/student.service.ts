@@ -1,9 +1,31 @@
 import { Injectable } from '@nestjs/common';
-import { CreateStudentInput } from './inputs/create-student.input';
-import { UpdateStudentInput } from './inputs/update-student.input';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+import { LoginStudentInput } from './inputs/loginStudent.input';
+
+import { Student } from '../entities/student.entity';
 
 @Injectable()
 export class StudentService {
+
+  constructor (
+    @InjectModel(Student.name) private readonly studentModel: Model<Student>,
+  ){}
+
+
+  async loginStudent (loginStudent : LoginStudentInput){
+    return await this.studentModel.find({
+      $and: [
+        { email: { $eq: loginStudent.email } },
+        { password: { $eq: loginStudent.password } }
+      ]
+    })
+  }
+
+
+
+
   // create(createStudentInput: CreateStudentInput) {
   //   return 'This action adds a new student';
   // }

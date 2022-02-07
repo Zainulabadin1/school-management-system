@@ -102,6 +102,8 @@ type Mutation {
   createSubject(createSubjectInput: CreateSubjectInput!): SubjectDto!
   createTimetable(createTimetableInput: CreateTimetableInput!): TimetableDto!
   loginAdmin(loginAdminInput: LoginAdminInput!): [AdminDto!]!
+  loginTeacher(loginTeacherInput: LoginTeacherInput!): [TeacherDto!]!
+  loginStudent(loginStudentInput: LoginStudentInput!): [StudentDto!]!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): [AccountantDto!]!
   loginParent(loginParentInput: LoginParentInput!): [ParentDto!]!
 }
@@ -184,6 +186,16 @@ input CreateTimetableInput {
 }
 
 input LoginAdminInput {
+  email: String!
+  password: String!
+}
+
+input LoginTeacherInput {
+  email: String!
+  password: String!
+}
+
+input LoginStudentInput {
   email: String!
   password: String!
 }
