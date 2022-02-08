@@ -27,6 +27,9 @@ export class UpdateTeacherInput {
     @Field()
     dob: Date
 
+    @Field({nullable:true})
+    age: number
+
     @Field()
     address: string
 

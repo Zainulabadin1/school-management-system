@@ -251,6 +251,11 @@ export class AdminService {
         return apiResponse
       }
       else {
+        var today = new Date().getFullYear();
+        var dob = accountant.dob.getFullYear();
+        var calculatedAge = today - dob;
+        accountant.age = calculatedAge
+
         accountant.name = updateAccountantInput.name;
         accountant.email = updateAccountantInput.email;
         accountant.password = updateAccountantInput.password;
@@ -368,6 +373,11 @@ export class AdminService {
         return apiResponse
       }
       else {
+        var today = new Date().getFullYear();
+        var dob = student.dob.getFullYear();
+        var calculatedAge = today - dob;
+        student.age = calculatedAge
+
         student.name = updateStudentInput.name;
         student.email = updateStudentInput.email;
         student.password = updateStudentInput.password;
@@ -449,6 +459,11 @@ export class AdminService {
         return apiResponse
       }
       else {
+        var today = new Date().getFullYear();
+        var dob = teacher.dob.getFullYear();
+        var calculatedAge = today - dob;
+        teacher.age = calculatedAge
+
         teacher.name = updateTeacherInput.name;
         teacher.email = updateTeacherInput.email;
         teacher.password = updateTeacherInput.password;

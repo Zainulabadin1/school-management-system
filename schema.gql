@@ -372,6 +372,7 @@ input UpdateTeacherInput {
   gender: String!
   religion: String!
   dob: DateTime!
+  age: Float
   address: String!
   employeeId: String!
   salary: Float!
