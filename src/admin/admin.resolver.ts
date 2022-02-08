@@ -9,6 +9,14 @@ import { CreateSubjectInput } from './inputs/create-subject.input';
 import { CreateTimetableInput } from './inputs/create-timetable.input';
 import { createParentInput } from './inputs/createParent.input';
 
+import { UpdateAccountantInput } from './inputs/updateAccountant.input';
+import { UpdateAdminInput } from './inputs/updateAdmin.input';
+import { UpdateParentInput } from '../parent/inputs/update-parent.input';
+import { UpdateStudentInput } from './inputs/updateStudent.input';
+import { UpdateSubjectInput } from './inputs/updateSubject.input';
+import { UpdateTeacherInput } from './inputs/updateTeacher.input';
+import { UpdateTimetableInput } from './inputs/updateTimtable.input';
+
 
 import { LoginAdminInput } from './inputs/login-admin.input';
 
@@ -19,6 +27,15 @@ import { CreateAccountantResponseDto } from './ApiResponsesDto/createAccountantR
 import { CreateSubjectResponseDto } from './ApiResponsesDto/createSubjectResponse.dto';
 import { CreateTimetableResponseDto } from './ApiResponsesDto/createTimetableResponse.dto';
 import { CreateParentResponseDto } from './ApiResponsesDto/createParentResponse.dto';
+
+import { UpdateAccountantResponseDto } from './ApiResponsesDto/updateAccountantResponse.dto';
+import { UpdateAdminResponseDto } from './ApiResponsesDto/updateAdminResponse.dto';
+import { UpdateParentResponseDto } from './ApiResponsesDto/updateParentResponse.dto';
+import { UpdateStudentResponseDto } from './ApiResponsesDto/updateStudentResponse.dto';
+import { UpdateSubjectResponseDto } from './ApiResponsesDto/updateSubjectResponse.dto';
+import { UpdateTeacherResponseDto } from './ApiResponsesDto/updateTeacherResponse.dto';
+import { UpdateTimetableResponseDto } from './ApiResponsesDto/updateTimetableResponse.dto';
+
 import { loginAdminResponseDto } from './ApiResponsesDto/loginAdminResponse.dto';
 
 
@@ -69,11 +86,25 @@ export class AdminResolver {
     return this.adminService.loginAdmin(loginAdminInput);
   }
 
+  @Mutation(() => UpdateAccountantResponseDto)
+  updateAccountant(@Args('updateAccountantInput') updateAccountantInput: UpdateAccountantInput) {
+    return this.adminService.updateAccountant(updateAccountantInput);
+  }
+
+  @Mutation(() => UpdateAdminResponseDto)
+  updateAdmin(@Args('updateAdminInput') updateAdminInput: UpdateAdminInput) {
+    return this.adminService.updateAdmin(updateAdminInput);
+  }
+
+
+
+
+
 
   @Query(() => [CreateAdminResponseDto], { name: 'admin' })
   findAll() {
     return this.adminService.findAll();
   }
 
-  
+
 }

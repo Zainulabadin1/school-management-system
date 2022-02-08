@@ -18,7 +18,7 @@ export class UpdateAccountantInput {
     @Field()
     contactNumber: number
 
-    @Field()
+    @Field({nullable:true})
     gender: string
 
     @Field()

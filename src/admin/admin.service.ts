@@ -11,6 +11,14 @@ import { CreateTimetableInput } from './inputs/create-timetable.input';
 import { createParentInput } from './inputs/createParent.input';
 import { LoginAdminInput } from './inputs/login-admin.input';
 
+import { UpdateAccountantInput } from './inputs/updateAccountant.input';
+import { UpdateAdminInput } from './inputs/updateAdmin.input';
+import { UpdateParentInput } from '../parent/inputs/update-parent.input';
+import { UpdateStudentInput } from './inputs/updateStudent.input';
+import { UpdateSubjectInput } from './inputs/updateSubject.input';
+import { UpdateTeacherInput } from './inputs/updateTeacher.input';
+import { UpdateTimetableInput } from './inputs/updateTimtable.input';
+
 import { Admin } from '../entities/admin.entity';
 import { Teacher } from '../entities/teacher.entity';
 import { Student } from '../entities/student.entity';
@@ -232,8 +240,83 @@ export class AdminService {
     }
   }
 
+  async updateAccountant(updateAccountantInput: UpdateAccountantInput) {
+    try {
+      const accountant = await this.accountantModel.findById(updateAccountantInput._id);
+      if (!accountant) {
+        let apiResponse = {
+          code: 404,
+          message: "Accountant not found"
+        }
+        return apiResponse
+      }
+      else {
+        accountant.name = updateAccountantInput.name;
+        accountant.email = updateAccountantInput.email;
+        accountant.password = updateAccountantInput.password;
+        accountant.contactNumber = updateAccountantInput.contactNumber;
+        accountant.gender = updateAccountantInput.gender;
+        accountant.religion = updateAccountantInput.religion;
+        accountant.dob = updateAccountantInput.dob;
+        accountant.address = updateAccountantInput.address;
+        accountant.employeeId = updateAccountantInput.employeeId;
+        accountant.salary = updateAccountantInput.salary;
+        accountant.isAccountant = updateAccountantInput.isAccountant;
+        const updatedaccountant = accountant.save();
 
+        let apiResponse = {
+          code: 200,
+          message: "Accountant credentials are updated successfully",
+          data: updatedaccountant
+        }
+        return apiResponse
+      }
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Accountant credentials"
+      }
 
+      return apiResponse
+    }
+  }
+
+  async updateAdmin(updateAdminInput: UpdateAdminInput) {
+    try {
+      const admin = await this.adminModel.findById(updateAdminInput);
+      if (!admin) {
+        let apiResponse = {
+          code: 404,
+          message: "Admin not found"
+        }
+        return apiResponse
+      }
+      else {
+        admin.name = updateAdminInput.name;
+        admin.email = updateAdminInput.email;
+        admin.password = updateAdminInput.password;
+
+        const updatedAdmin = admin.save();
+
+        let apiResponse = {
+          code: 200,
+          message: "Admin credentials are updated successfully",
+          data: updatedAdmin
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Admin credentials"
+      }
+
+      return apiResponse
+    }
+  }
 
 
 

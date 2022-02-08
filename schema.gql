@@ -131,6 +131,18 @@ type CreateParentResponseDto {
   data: ParentDto
 }
 
+type UpdateAccountantResponseDto {
+  code: Float!
+  message: String!
+  data: AccountantDto
+}
+
+type UpdateAdminResponseDto {
+  code: Float!
+  message: String!
+  data: AdminDto
+}
+
 type loginAdminResponseDto {
   code: Float!
   message: String!
@@ -169,6 +181,8 @@ type Mutation {
   createSubject(createSubjectInput: CreateSubjectInput!): CreateSubjectResponseDto!
   createTimetable(createTimetableInput: CreateTimetableInput!): CreateTimetableResponseDto!
   loginAdmin(loginAdminInput: LoginAdminInput!): loginAdminResponseDto!
+  updateAccountant(updateAccountantInput: UpdateAccountantInput!): UpdateAccountantResponseDto!
+  updateAdmin(updateAdminInput: UpdateAdminInput!): UpdateAdminResponseDto!
   loginTeacher(loginTeacherInput: LoginTeacherInput!): loginTeacherResponseDto!
   loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
@@ -253,6 +267,30 @@ input CreateTimetableInput {
 }
 
 input LoginAdminInput {
+  email: String!
+  password: String!
+}
+
+input UpdateAccountantInput {
+  _id: ID!
+  name: String!
+  email: String!
+  password: String!
+  contactNumber: Float!
+  gender: String
+  religion: String!
+  dob: DateTime!
+  age: Float
+  address: String!
+  employeeId: String!
+  salary: Float!
+  joiningDate: DateTime
+  isAccountant: Boolean
+}
+
+input UpdateAdminInput {
+  _id: ID!
+  name: String!
   email: String!
   password: String!
 }
