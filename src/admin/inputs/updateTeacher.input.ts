@@ -27,9 +27,6 @@ export class UpdateTeacherInput {
     @Field()
     dob: Date
 
-    @Field({ nullable: true })
-    age: number
-
     @Field()
     address: string
 
@@ -38,9 +35,6 @@ export class UpdateTeacherInput {
 
     @Field()
     salary: number
-
-    @Field({ nullable: true })
-    joiningDate: Date
 
     @Field({ nullable: true })
     isTeacher: boolean

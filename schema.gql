@@ -143,6 +143,36 @@ type UpdateAdminResponseDto {
   data: AdminDto
 }
 
+type UpdateParentResponseDto {
+  code: Float!
+  message: String!
+  data: ParentDto
+}
+
+type UpdateStudentResponseDto {
+  code: Float!
+  message: String!
+  data: StudentDto
+}
+
+type UpdateSubjectResponseDto {
+  code: Float!
+  message: String!
+  data: SubjectDto
+}
+
+type UpdateTeacherResponseDto {
+  code: Float!
+  message: String!
+  data: TeacherDto
+}
+
+type UpdateTimetableResponseDto {
+  code: Float!
+  message: String!
+  data: TimetableDto
+}
+
 type loginAdminResponseDto {
   code: Float!
   message: String!
@@ -183,6 +213,11 @@ type Mutation {
   loginAdmin(loginAdminInput: LoginAdminInput!): loginAdminResponseDto!
   updateAccountant(updateAccountantInput: UpdateAccountantInput!): UpdateAccountantResponseDto!
   updateAdmin(updateAdminInput: UpdateAdminInput!): UpdateAdminResponseDto!
+  updateParent(updateParentInput: UpdateParentInput!): UpdateParentResponseDto!
+  updateStudent(updateStudentInput: UpdateStudentInput!): UpdateStudentResponseDto!
+  updateSubject(updateSubjectInput: UpdateSubjectInput!): UpdateSubjectResponseDto!
+  updateTeacher(updateTeacherInput: UpdateTeacherInput!): UpdateTeacherResponseDto!
+  updateTimetable(updateTimetableInput: UpdateTimetableInput!): UpdateTimetableResponseDto!
   loginTeacher(loginTeacherInput: LoginTeacherInput!): loginTeacherResponseDto!
   loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
@@ -293,6 +328,64 @@ input UpdateAdminInput {
   name: String!
   email: String!
   password: String!
+}
+
+input UpdateParentInput {
+  _id: ID!
+  name: String!
+  email: String!
+  password: String!
+  gender: String!
+  contactNumber: Float!
+}
+
+input UpdateStudentInput {
+  _id: ID!
+  name: String!
+  email: String!
+  password: String!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  age: Float
+  address: String!
+  rollNumber: Float!
+  class: Float!
+  section: String!
+  isStudent: Boolean
+  joiningDate: DateTime
+  parentId: ID
+}
+
+input UpdateSubjectInput {
+  _id: ID!
+  name: String!
+  subjectCode: String!
+}
+
+input UpdateTeacherInput {
+  _id: ID!
+  name: String!
+  email: String!
+  password: String!
+  contactNumber: Float!
+  gender: String!
+  religion: String!
+  dob: DateTime!
+  address: String!
+  employeeId: String!
+  salary: Float!
+  isTeacher: Boolean
+}
+
+input UpdateTimetableInput {
+  _id: ID!
+  teacherId: ID!
+  day: String!
+  slot: String!
+  class: String!
+  subject: ID!
+  roomNo: Float!
 }
 
 input LoginTeacherInput {

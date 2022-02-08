@@ -2,7 +2,7 @@ import { Field, ID, InputType } from "@nestjs/graphql";
 import { ObjectId } from "mongoose";
 
 @InputType()
-export class createParentInput {
+export class UpdateParentInput {
     @Field(() => ID)
     _id: ObjectId
 

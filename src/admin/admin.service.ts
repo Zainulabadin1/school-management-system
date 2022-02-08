@@ -13,7 +13,7 @@ import { LoginAdminInput } from './inputs/login-admin.input';
 
 import { UpdateAccountantInput } from './inputs/updateAccountant.input';
 import { UpdateAdminInput } from './inputs/updateAdmin.input';
-import { UpdateParentInput } from '../parent/inputs/update-parent.input';
+import { UpdateParentInput } from './inputs/updateParent.input';
 import { UpdateStudentInput } from './inputs/updateStudent.input';
 import { UpdateSubjectInput } from './inputs/updateSubject.input';
 import { UpdateTeacherInput } from './inputs/updateTeacher.input';
@@ -284,7 +284,7 @@ export class AdminService {
 
   async updateAdmin(updateAdminInput: UpdateAdminInput) {
     try {
-      const admin = await this.adminModel.findById(updateAdminInput);
+      const admin = await this.adminModel.findById(updateAdminInput._id);
       if (!admin) {
         let apiResponse = {
           code: 404,
@@ -317,6 +317,213 @@ export class AdminService {
       return apiResponse
     }
   }
+
+  async updateParent(updateParentInput: UpdateParentInput) {
+    try {
+      const parent = await this.parentModel.findById(updateParentInput._id);
+      if (!parent) {
+        let apiResponse = {
+          code: 404,
+          message: "Parent not found"
+        }
+        return apiResponse
+      }
+      else {
+        parent.name = updateParentInput.name;
+        parent.email = updateParentInput.email;
+        parent.password = updateParentInput.password;
+        parent.contactNumber = updateParentInput.contactNumber;
+        parent.gender = updateParentInput.gender;
+
+        const updatedParent = parent.save();
+
+        let apiResponse = {
+          code: 200,
+          message: "Parent credentials are updated successfully",
+          data: updatedParent
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Parent credentials"
+      }
+
+      return apiResponse
+    }
+  }
+
+
+  async updateStudent(updateStudentInput: UpdateStudentInput) {
+    try {
+      const student = await this.studentModel.findById(updateStudentInput._id);
+      if (!student) {
+        let apiResponse = {
+          code: 404,
+          message: "Student not found"
+        }
+        return apiResponse
+      }
+      else {
+        student.name = updateStudentInput.name;
+        student.email = updateStudentInput.email;
+        student.password = updateStudentInput.password;
+        student.gender = updateStudentInput.gender;
+        student.religion = updateStudentInput.religion;
+        student.dob = updateStudentInput.dob;
+        student.address = updateStudentInput.address;
+        student.rollNumber = updateStudentInput.rollNumber;
+        student.class = updateStudentInput.class;
+        student.section = updateStudentInput.section;
+        student.isStudent = updateStudentInput.isStudent;
+        student.parentId = updateStudentInput.parentId;
+
+
+        const updatedStudent = student.save();
+
+        let apiResponse = {
+          code: 200,
+          message: "Student credentials are updated successfully",
+          data: updatedStudent
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Student credentials"
+      }
+
+      return apiResponse
+    }
+  }
+
+  async updateSubject(updateSubjectInput: UpdateSubjectInput) {
+    try {
+      const subject = await this.subjectsModel.findById(updateSubjectInput._id);
+      if (!subject) {
+        let apiResponse = {
+          code: 404,
+          message: "Subject not found"
+        }
+        return apiResponse
+      }
+      else {
+        subject.name = updateSubjectInput.name;
+        subject.subjectCode = updateSubjectInput.subjectCode;
+
+        const updatedSubject = subject.save();
+
+        let apiResponse = {
+          code: 200,
+          message: "Subject information id updated successfully",
+          data: updatedSubject
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Subject information"
+      }
+
+      return apiResponse
+    }
+  }
+
+  async updateTeacher(updateTeacherInput: UpdateTeacherInput) {
+    try {
+      const teacher = await this.teacherModel.findById(updateTeacherInput._id);
+      if (!teacher) {
+        let apiResponse = {
+          code: 404,
+          message: "Teacher not found"
+        }
+        return apiResponse
+      }
+      else {
+        teacher.name = updateTeacherInput.name;
+        teacher.email = updateTeacherInput.email;
+        teacher.password = updateTeacherInput.password;
+        teacher.contactNumber = updateTeacherInput.contactNumber;
+        teacher.gender = updateTeacherInput.gender;
+        teacher.religion = updateTeacherInput.religion;
+        teacher.dob = updateTeacherInput.dob;
+        teacher.address = updateTeacherInput.address;
+        teacher.employeeId = updateTeacherInput.employeeId;
+        teacher.salary = updateTeacherInput.salary;
+        teacher.isTeacher = updateTeacherInput.isTeacher;
+        teacher.name = updateTeacherInput.name;
+
+        const updatedTeacher = teacher.save();
+
+        let apiResponse = {
+          code: 200,
+          message: "Teacher credentials are updated successfully",
+          data: updatedTeacher
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Teacher credentials"
+      }
+
+      return apiResponse
+    }
+  }
+
+  async updateTimetable(updateTimetableInput: UpdateTimetableInput) {
+    try {
+      const timetable = await this.timetableModel.findById(updateTimetableInput._id);
+      if (!timetable) {
+        let apiResponse = {
+          code: 404,
+          message: "Timetable entry not found"
+        }
+        return apiResponse
+      }
+      else {
+        timetable.teacherId = updateTimetableInput.teacherId;
+        timetable.day = updateTimetableInput.day;
+        timetable.slot = updateTimetableInput.slot;
+        timetable.class = updateTimetableInput.class;
+        timetable.subject = updateTimetableInput.subject;
+        timetable.roomNo = updateTimetableInput.roomNo;
+
+        const updatedTimetable = timetable.save();
+
+        let apiResponse = {
+          code: 200,
+          message: "TimetableModel slot updated successfully",
+          data: updatedTimetable
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Timetable"
+      }
+
+      return apiResponse
+    }
+  }
+
+
+
 
 
 

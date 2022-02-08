@@ -11,7 +11,7 @@ import { createParentInput } from './inputs/createParent.input';
 
 import { UpdateAccountantInput } from './inputs/updateAccountant.input';
 import { UpdateAdminInput } from './inputs/updateAdmin.input';
-import { UpdateParentInput } from '../parent/inputs/update-parent.input';
+import { UpdateParentInput } from './inputs/updateParent.input';
 import { UpdateStudentInput } from './inputs/updateStudent.input';
 import { UpdateSubjectInput } from './inputs/updateSubject.input';
 import { UpdateTeacherInput } from './inputs/updateTeacher.input';
@@ -94,6 +94,31 @@ export class AdminResolver {
   @Mutation(() => UpdateAdminResponseDto)
   updateAdmin(@Args('updateAdminInput') updateAdminInput: UpdateAdminInput) {
     return this.adminService.updateAdmin(updateAdminInput);
+  }
+
+  @Mutation(() => UpdateParentResponseDto)
+  updateParent(@Args('updateParentInput') updateParentInput: UpdateParentInput) {
+    return this.adminService.updateParent(updateParentInput);
+  }
+
+  @Mutation(() => UpdateStudentResponseDto)
+  updateStudent(@Args('updateStudentInput') updateStudentInput: UpdateStudentInput) {
+    return this.adminService.updateStudent(updateStudentInput);
+  }
+
+  @Mutation(() => UpdateSubjectResponseDto)
+  updateSubject(@Args('updateSubjectInput') updateSubjectInput: UpdateSubjectInput) {
+    return this.adminService.updateSubject(updateSubjectInput);
+  }
+
+  @Mutation(() => UpdateTeacherResponseDto)
+  updateTeacher(@Args('updateTeacherInput') updateTeacherInput: UpdateTeacherInput) {
+    return this.adminService.updateTeacher(updateTeacherInput);
+  }
+
+  @Mutation(() => UpdateTimetableResponseDto)
+  updateTimetable(@Args('updateTimetableInput') updateTimetableInput: UpdateTimetableInput) {
+    return this.adminService.updateTimetable(updateTimetableInput);
   }
 
 
