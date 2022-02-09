@@ -193,6 +193,27 @@ type loginAccountantResponseDto {
   message: String!
 }
 
+type FeesDto {
+  studentId: ID!
+  monthlyFee: Float!
+  Concession: Float!
+  isPaid: Boolean!
+  amountPaid: Float!
+  date: DateTime!
+}
+
+type EnterFeeResponseDto {
+  code: Float!
+  message: String!
+  data: FeesDto
+}
+
+type UpdateFeeRecordResponseDto {
+  code: Float!
+  message: String!
+  data: FeesDto
+}
+
 type loginParentResponseDto {
   code: Float!
   message: String!
@@ -221,6 +242,8 @@ type Mutation {
   loginTeacher(loginTeacherInput: LoginTeacherInput!): loginTeacherResponseDto!
   loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
+  enterFee(enterFeeInput: EnterFeeInput!): EnterFeeResponseDto!
+  updateFeeRecord(updateFeeRecordInput: UpdateFeeRecordInput!): UpdateFeeRecordResponseDto!
   loginParent(loginParentInput: LoginParentInput!): loginParentResponseDto!
 }
 
@@ -402,6 +425,25 @@ input LoginStudentInput {
 input LoginAccountantInput {
   email: String!
   password: String!
+}
+
+input EnterFeeInput {
+  studentId: ID!
+  monthlyFee: Float!
+  Concession: Float!
+  isPaid: Boolean!
+  amountPaid: Float!
+  date: DateTime
+}
+
+input UpdateFeeRecordInput {
+  _id: ID!
+  studentId: ID!
+  monthlyFee: Float!
+  Concession: Float!
+  isPaid: Boolean!
+  amountPaid: Float!
+  date: DateTime
 }
 
 input LoginParentInput {

@@ -3,7 +3,15 @@ import { AccountantService } from './accountant.service';
 
 import { LoginAccountantInput } from './inputs/login-accountant.input';
 
+import { EnterFeeInput } from './inputs/enterFee.input';
+
+import { UpdateFeeRecordInput } from './inputs/updateFeeRecord.input';
+
 import { loginAccountantResponseDto } from './ApiResponsesDto/loginAccountantResponse.dto';
+
+import { EnterFeeResponseDto } from './ApiResponsesDto/enterFeeResponse.dto';
+
+import { UpdateFeeRecordResponseDto } from './ApiResponsesDto/updateFeeRecordResponse.dto';
 
 
 @Resolver()
@@ -15,5 +23,15 @@ export class AccountantResolver {
     return await this.accountantService.loginAccountant(loginAccountantInput);
   }
 
+  @Mutation(()=> EnterFeeResponseDto )
+  async enterFee(@Args('enterFeeInput') enterFeeInput:EnterFeeInput ){
+    return await this.accountantService.enterFee(enterFeeInput);
+  }
+
+
+  @Mutation(()=> UpdateFeeRecordResponseDto)
+  async updateFeeRecord(@Args('updateFeeRecordInput') updateFeeRecordInput:UpdateFeeRecordInput ){
+    return await this.accountantService.updateFeeRecord(updateFeeRecordInput);
+  }
   
 }

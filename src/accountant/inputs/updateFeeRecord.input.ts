@@ -1,8 +1,11 @@
-import { Field, ObjectType, ID } from "@nestjs/graphql";
+import { InputType, Field, ID } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
 
-@ObjectType()
-export class FeesDto{
+@InputType()
+export class UpdateFeeRecordInput {
+    @Field(()=> ID)
+    _id: ObjectId
+
     @Field(() => ID)
     studentId: ObjectId
 
@@ -18,6 +21,7 @@ export class FeesDto{
     @Field()
     amountPaid: number
 
-    @Field()
-    date: Date
+    @Field({nullable: true})
+    date: Date 
+  
 }
