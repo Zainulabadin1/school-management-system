@@ -214,6 +214,12 @@ type UpdateFeeRecordResponseDto {
   data: FeesDto
 }
 
+type ViewFeeRecordResponseDto {
+  code: Float!
+  message: String!
+  data: [FeesDto!]
+}
+
 type loginParentResponseDto {
   code: Float!
   message: String!
@@ -221,6 +227,18 @@ type loginParentResponseDto {
 
 type Query {
   admin: [CreateAdminResponseDto!]!
+  viewFee: ViewFeeRecordResponseDto!
+  viewStudentFee(viewSingleFeeRecord: ViewFeeRecordInput!): ViewFeeRecordResponseDto!
+}
+
+input ViewFeeRecordInput {
+  _id: ID
+  studentId: ID
+  monthlyFee: Float
+  Concession: Float
+  isPaid: Boolean
+  amountPaid: Float
+  date: DateTime
 }
 
 type Mutation {
@@ -432,7 +450,7 @@ input EnterFeeInput {
   monthlyFee: Float!
   Concession: Float!
   isPaid: Boolean!
-  amountPaid: Float!
+  amountPaid: Float
   date: DateTime
 }
 
@@ -442,7 +460,7 @@ input UpdateFeeRecordInput {
   monthlyFee: Float!
   Concession: Float!
   isPaid: Boolean!
-  amountPaid: Float!
+  amountPaid: Float
   date: DateTime
 }
 

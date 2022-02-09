@@ -18,7 +18,7 @@ export class UpdateFeeRecordInput {
     @Field()
     isPaid: boolean
 
-    @Field()
+    @Field({nullable: true})
     amountPaid: number
 
     @Field({nullable: true})

@@ -18,7 +18,7 @@ import { UpdateTeacherInput } from './inputs/updateTeacher.input';
 import { UpdateTimetableInput } from './inputs/updateTimtable.input';
 
 
-import { LoginAdminInput } from './inputs/login-admin.input';
+import { LoginAdminInput } from './inputs/loginAdmin.input';
 
 import { CreateAdminResponseDto } from './ApiResponsesDto/createAdminResponse.dto';
 import { CreateTeacherResponseDto } from './ApiResponsesDto/createTeacherResponse.dto';

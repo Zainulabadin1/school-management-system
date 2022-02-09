@@ -15,7 +15,7 @@ export class EnterFeeInput {
     @Field()
     isPaid: boolean
 
-    @Field()
+    @Field({nullable: true})
     amountPaid: number
 
     @Field({nullable: true})

@@ -9,6 +9,8 @@ import { EnterFeeInput } from './inputs/enterFee.input';
 
 import { UpdateFeeRecordInput } from './inputs/updateFeeRecord.input';
 
+import { ViewFeeRecordInput } from './inputs/viewFeeRecord.input';
+
 import { Accountant } from '../entities/accountant.entity';
 import { Fees } from '../entities/fees.entity';
 
@@ -58,6 +60,9 @@ export class AccountantService {
   async enterFee(enterFeeInput: EnterFeeInput) {
     try {
       const enterFee = await new this.feesModel(enterFeeInput)
+      var amount = enterFee.monthlyFee - enterFee.Concession;
+      enterFee.amountPaid = amount;
+
       const feeEntered = enterFee.save();
       let apiResponse = {
         code: 200,
@@ -87,11 +92,13 @@ export class AccountantService {
         return apiResponse
       }
       else {
+        var amount = record.monthlyFee - record.Concession
+
         record.studentId = updateFeeRecordInput.studentId;
         record.monthlyFee = updateFeeRecordInput.monthlyFee;
         record.Concession = updateFeeRecordInput.Concession;
         record.isPaid = updateFeeRecordInput.isPaid;
-        record.amountPaid = updateFeeRecordInput.amountPaid;
+        record.amountPaid = amount;
         record.date = updateFeeRecordInput.date;
 
         const updatedFeeRecord = record.save();
@@ -113,4 +120,50 @@ export class AccountantService {
       return apiResponse
     }
   }
+
+  async viewFeeRecord() {
+    try {
+
+      const feeResults = await this.feesModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: feeResults
+        }
+        return apiResponse;
+      }
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in getting Fee record"
+      }
+      return apiResponse
+    }
+
+  }
+
+  async viewStudentFee(viewSingleFeeRecord: ViewFeeRecordInput) {
+    try {
+
+      const studenFee = await this.feesModel.find({ studentId: { $eq: viewSingleFeeRecord.studentId } });
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: studenFee
+        }
+        return apiResponse;
+      }
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in getting Fee record"
+      }
+      return apiResponse
+    }
+  }
+
 }

@@ -9,7 +9,7 @@ import { CreateAccountantInput } from './inputs/create-accountant.input';
 import { CreateSubjectInput } from './inputs/create-subject.input';
 import { CreateTimetableInput } from './inputs/create-timetable.input';
 import { createParentInput } from './inputs/createParent.input';
-import { LoginAdminInput } from './inputs/login-admin.input';
+import { LoginAdminInput } from './inputs/loginAdmin.input';
 
 import { UpdateAccountantInput } from './inputs/updateAccountant.input';
 import { UpdateAdminInput } from './inputs/updateAdmin.input';
