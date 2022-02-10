@@ -216,6 +216,7 @@ type SalaryDto {
   fine: Float!
   payingDate: DateTime
   isPaid: Boolean
+  amountPaid: Float
 }
 
 type EnterSalaryResponseDto {
@@ -496,6 +497,7 @@ input EnterSalaryInput {
   fine: Float!
   payingDate: DateTime
   isPaid: Boolean
+  amountPaid: Float
 }
 
 input UpdateSalaryRecordInput {
@@ -507,6 +509,7 @@ input UpdateSalaryRecordInput {
   fine: Float!
   payingDate: DateTime
   isPaid: Boolean
+  amountPaid: Float
 }
 
 input LoginParentInput {

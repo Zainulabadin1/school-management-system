@@ -173,6 +173,9 @@ export class AccountantService {
   async enterSalary(enterSalaryInput: EnterSalaryInput) {
     try {
       const enteringSalary = await new this.salaryModel(enterSalaryInput)
+      var amount = enteringSalary.salary - enteringSalary.fine;
+      enteringSalary.amountPaid = amount;
+
       const salaryEntered = enteringSalary.save();
       let apiResponse = {
         code: 200,
@@ -202,6 +205,8 @@ export class AccountantService {
         return apiResponse
       }
       else {
+        var amount = record.salary - record.fine;
+        record.amountPaid = amount;
 
         record.name = updateSalaryInput.name;
         record.teacherID = updateSalaryInput.teacherID;

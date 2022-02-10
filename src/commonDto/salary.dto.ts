@@ -23,4 +23,7 @@ export class SalaryDto{
 
     @Field({ nullable: true })
     isPaid: boolean
+
+    @Field({nullable: true})
+    amountPaid: number
 }

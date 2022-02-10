@@ -26,5 +26,8 @@ export class UpdateSalaryRecordInput {
 
     @Field({ nullable: true })
     isPaid: boolean
+
+    @Field({nullable: true})
+    amountPaid: number
     
 }

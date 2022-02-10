@@ -28,6 +28,9 @@ export class Salary extends Document {
 
     @Prop({ default: false })
     isPaid: boolean
+
+    @Prop()
+    amountPaid: number
 }
 
 export const SalarySchema = SchemaFactory.createForClass(Salary);
