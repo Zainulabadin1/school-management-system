@@ -5,6 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 
 import { Accountant, AccountantSchema } from '../entities/accountant.entity';
 import { Fees, FeesSchema } from '../entities/fees.entity';
+import { Salary, SalarySchema } from '../entities/salary.entity';
 
 @Module({
   imports: [
@@ -13,6 +14,9 @@ import { Fees, FeesSchema } from '../entities/fees.entity';
 
     MongooseModule.forFeature([
       { name: Fees.name, schema: FeesSchema }]),
+
+    MongooseModule.forFeature([
+      { name: Salary.name, schema: SalarySchema }]),
 
   ],
   providers: [AccountantResolver, AccountantService]

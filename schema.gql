@@ -208,10 +208,32 @@ type EnterFeeResponseDto {
   data: FeesDto
 }
 
+type SalaryDto {
+  name: String!
+  teacherID: ID!
+  employeeId: String!
+  salary: Float!
+  fine: Float!
+  payingDate: DateTime
+  isPaid: Boolean
+}
+
+type EnterSalaryResponseDto {
+  code: Float!
+  message: String!
+  data: SalaryDto
+}
+
 type UpdateFeeRecordResponseDto {
   code: Float!
   message: String!
   data: FeesDto
+}
+
+type UpdateSalaryRecordResponseDto {
+  code: Float!
+  message: String!
+  data: SalaryDto
 }
 
 type ViewFeeRecordResponseDto {
@@ -262,6 +284,8 @@ type Mutation {
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
   enterFee(enterFeeInput: EnterFeeInput!): EnterFeeResponseDto!
   updateFeeRecord(updateFeeRecordInput: UpdateFeeRecordInput!): UpdateFeeRecordResponseDto!
+  enterSalary(enterSalaryInput: EnterSalaryInput!): EnterSalaryResponseDto!
+  updateSalaryRecord(updateSalaryInput: UpdateSalaryRecordInput!): UpdateSalaryRecordResponseDto!
   loginParent(loginParentInput: LoginParentInput!): loginParentResponseDto!
 }
 
@@ -462,6 +486,27 @@ input UpdateFeeRecordInput {
   isPaid: Boolean!
   amountPaid: Float
   date: DateTime
+}
+
+input EnterSalaryInput {
+  name: String!
+  teacherID: ID!
+  employeeId: String!
+  salary: Float!
+  fine: Float!
+  payingDate: DateTime
+  isPaid: Boolean
+}
+
+input UpdateSalaryRecordInput {
+  _id: ID!
+  name: String!
+  teacherID: ID!
+  employeeId: String!
+  salary: Float!
+  fine: Float!
+  payingDate: DateTime
+  isPaid: Boolean
 }
 
 input LoginParentInput {

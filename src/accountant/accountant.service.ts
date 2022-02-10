@@ -6,19 +6,23 @@ import { Model } from 'mongoose';
 import { LoginAccountantInput } from './inputs/login-accountant.input';
 
 import { EnterFeeInput } from './inputs/enterFee.input';
+import { EnterSalaryInput } from './inputs/enterSalary.input';
 
 import { UpdateFeeRecordInput } from './inputs/updateFeeRecord.input';
+import { UpdateSalaryRecordInput } from './inputs/updateSalaryRecord.input';
 
 import { ViewFeeRecordInput } from './inputs/viewFeeRecord.input';
 
 import { Accountant } from '../entities/accountant.entity';
 import { Fees } from '../entities/fees.entity';
+import { Salary } from '../entities/salary.entity';
 
 @Injectable()
 export class AccountantService {
   constructor(
     @InjectModel(Accountant.name) private accountantModel: Model<Accountant>,
     @InjectModel(Fees.name) private feesModel: Model<Fees>,
+    @InjectModel(Salary.name) private salaryModel: Model<Salary>,
   ) { }
 
   async loginAccountant(loginAccountant: LoginAccountantInput) {
@@ -165,5 +169,70 @@ export class AccountantService {
       return apiResponse
     }
   }
+
+  async enterSalary(enterSalaryInput: EnterSalaryInput) {
+    try {
+      const enteringSalary = await new this.salaryModel(enterSalaryInput)
+      const salaryEntered = enteringSalary.save();
+      let apiResponse = {
+        code: 200,
+        message: "Salary record successfully entered",
+        data: salaryEntered
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in entering salary record "
+      }
+      return apiResponse;
+    }
+
+  }
+
+  async updateSalaryRecord(updateSalaryInput: UpdateSalaryRecordInput) {
+    try {
+      const record = await this.salaryModel.findById(updateSalaryInput._id);
+      if (!record) {
+        let apiResponse = {
+          code: 404,
+          message: "Record not found"
+        }
+        return apiResponse
+      }
+      else {
+
+        record.name = updateSalaryInput.name;
+        record.teacherID = updateSalaryInput.teacherID;
+        record.employeeId = updateSalaryInput.employeeId;
+        record.salary = updateSalaryInput.salary;
+        record.fine = updateSalaryInput.fine;
+        record.payingDate = updateSalaryInput.payingDate;
+        record.isPaid = updateSalaryInput.isPaid;
+
+        const updatedSalaryRecord = record.save();
+
+        let apiResponse = {
+          code: 200,
+          message: "Salary record updated successfully",
+          data: updatedSalaryRecord
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating Salary record"
+      }
+      return apiResponse
+    }
+  }
+
+
+
+
 
 }

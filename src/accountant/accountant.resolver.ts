@@ -4,8 +4,10 @@ import { AccountantService } from './accountant.service';
 import { LoginAccountantInput } from './inputs/login-accountant.input';
 
 import { EnterFeeInput } from './inputs/enterFee.input';
+import { EnterSalaryInput } from './inputs/enterSalary.input';
 
 import { UpdateFeeRecordInput } from './inputs/updateFeeRecord.input';
+import { UpdateSalaryRecordInput } from './inputs/updateSalaryRecord.input';
 
 import { ViewFeeRecordInput } from './inputs/viewFeeRecord.input';
 
@@ -13,11 +15,13 @@ import { ViewFeeRecordInput } from './inputs/viewFeeRecord.input';
 import { loginAccountantResponseDto } from './ApiResponsesDto/loginAccountantResponse.dto';
 
 import { EnterFeeResponseDto } from './ApiResponsesDto/enterFeeResponse.dto';
+import { EnterSalaryResponseDto } from './ApiResponsesDto/enterSalaryResponse.dto';
 
 import { UpdateFeeRecordResponseDto } from './ApiResponsesDto/updateFeeRecordResponse.dto';
+import { UpdateSalaryRecordResponseDto } from './ApiResponsesDto/updateSalaryRecordResponse.dto';
 
 import { ViewFeeRecordResponseDto } from './ApiResponsesDto/viewFeeRecordResponse.dto';
-import { type } from 'os';
+
 
 
 @Resolver()
@@ -48,6 +52,16 @@ export class AccountantResolver {
   @Query(() => ViewFeeRecordResponseDto)
   async viewStudentFee(@Args('viewSingleFeeRecord') viewSingleFeeRecord: ViewFeeRecordInput) {
     return await this.accountantService.viewStudentFee(viewSingleFeeRecord);
+  }
+
+  @Mutation(() => EnterSalaryResponseDto)
+  async enterSalary(@Args('enterSalaryInput') enterSalaryInput: EnterSalaryInput) {
+    return await this.accountantService.enterSalary(enterSalaryInput);
+  }
+
+  @Mutation(()=> UpdateSalaryRecordResponseDto)
+  async updateSalaryRecord(@Args('updateSalaryInput')updateSalaryInput: UpdateSalaryRecordInput) {
+    return await this.accountantService.updateSalaryRecord(updateSalaryInput);
   }
 
 }
