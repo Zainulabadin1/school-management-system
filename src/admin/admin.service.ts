@@ -52,11 +52,10 @@ export class AdminService {
         data: adminCreated
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Some error in creating student "
+        message: error.message
       }
       return apiResponse;
     }
@@ -78,11 +77,10 @@ export class AdminService {
         data: teacherCreated
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Some error in creating student "
+        message: error.message
       }
       return apiResponse;
     }
@@ -104,11 +102,10 @@ export class AdminService {
         data: studentCreated
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Some error in creating student "
+        message: error.message
       }
       return apiResponse;
     }
@@ -131,11 +128,10 @@ export class AdminService {
         data: accountantCreated
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Some error in creating student "
+        message: error.message
       }
       return apiResponse;
     }
@@ -153,11 +149,10 @@ export class AdminService {
         data: subjectCreated
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Some error in creating student "
+        message: error.message
       }
       return apiResponse;
     }
@@ -173,11 +168,10 @@ export class AdminService {
         data: parentCreated
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Some error in creating student "
+        message: error.message
       }
       return apiResponse;
     }
@@ -193,11 +187,10 @@ export class AdminService {
         data: timetableCreated
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Some error in creating student "
+        message: error.message
       }
       return apiResponse;
     }
@@ -229,11 +222,10 @@ export class AdminService {
         return apiResponse
       }
     }
-    catch
-    {
+    catch (error) {
       let apiResponse = {
         code: 204,
-        message: "Some error in logging in"
+        message: error.message
       }
 
       return apiResponse
@@ -265,11 +257,10 @@ export class AdminService {
         }
         return apiResponse
       }
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Accountant credentials"
+        message: error.message
       }
 
       return apiResponse
@@ -278,7 +269,7 @@ export class AdminService {
 
   async updateAdmin(updateAdminInput: UpdateAdminInput) {
     try {
-      const updatedAdmin = await this.adminModel.findByIdAndUpdate(updateAdminInput._id, {$set: updateAdminInput}, {new: true});
+      const updatedAdmin = await this.adminModel.findByIdAndUpdate(updateAdminInput._id, { $set: updateAdminInput }, { new: true });
       if (!updatedAdmin) {
         let apiResponse = {
           code: 404,
@@ -287,7 +278,7 @@ export class AdminService {
         return apiResponse
       }
       else {
-    
+
         let apiResponse = {
           code: 200,
           message: "Admin credentials are updated successfully",
@@ -296,11 +287,10 @@ export class AdminService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Admin credentials"
+        message: error.message
       }
 
       return apiResponse
@@ -327,11 +317,10 @@ export class AdminService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Parent credentials"
+        message: error.message
       }
 
       return apiResponse
@@ -365,11 +354,10 @@ export class AdminService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Student credentials"
+        message: error.message
       }
 
       return apiResponse
@@ -395,11 +383,10 @@ export class AdminService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Subject information"
+        message: error.message
       }
 
       return apiResponse
@@ -432,11 +419,10 @@ export class AdminService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Teacher credentials"
+        message: error.message
       }
 
       return apiResponse
@@ -462,11 +448,10 @@ export class AdminService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Timetable"
+        message: error.message
       }
 
       return apiResponse

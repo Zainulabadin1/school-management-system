@@ -54,11 +54,10 @@ export class AccountantService {
         return apiResponse
       }
     }
-    catch
-    {
+    catch (error) {
       let apiResponse = {
         code: 204,
-        message: "Some error in logging in"
+        message: error.message
       }
 
       return apiResponse
@@ -78,11 +77,10 @@ export class AccountantService {
         data: feeEntered
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in entering fee record "
+        message: error.message
       }
       return apiResponse;
     }
@@ -113,11 +111,10 @@ export class AccountantService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Fee record"
+        message: error.message
       }
       return apiResponse
     }
@@ -135,11 +132,10 @@ export class AccountantService {
         }
         return apiResponse;
       }
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in getting Fee record"
+        message: error.message
       }
       return apiResponse
     }
@@ -158,11 +154,10 @@ export class AccountantService {
         }
         return apiResponse;
       }
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in getting Fee record"
+        message: error.message
       }
       return apiResponse
     }
@@ -181,11 +176,10 @@ export class AccountantService {
         data: salaryEntered
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in entering salary record "
+        message: error.message
       }
       return apiResponse;
     }
@@ -216,11 +210,10 @@ export class AccountantService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating Salary record"
+        message: error.message
       }
       return apiResponse
     }
@@ -238,11 +231,10 @@ export class AccountantService {
         data: expenseEntered
       }
       return apiResponse;
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in entering expense record "
+        message: error.message
       }
       return apiResponse;
     }
@@ -269,11 +261,10 @@ export class AccountantService {
         return apiResponse
       }
 
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in updating expense record"
+        message: error.message
       }
       return apiResponse
     }
@@ -284,7 +275,7 @@ export class AccountantService {
     try {
 
       const feeResults = await this.feesModel.find();
-      const totalFee = feeResults.reduce((p,n) => p + n.amountPaid , 0)
+      const totalFee = feeResults.reduce((p, n) => p + n.amountPaid, 0)
       {
         let apiResponse = {
           code: 200,
@@ -293,11 +284,10 @@ export class AccountantService {
         }
         return apiResponse;
       }
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in calculating total fee"
+        message: error.message
       }
       return apiResponse
     }
@@ -309,7 +299,7 @@ export class AccountantService {
     try {
 
       const expenses = await this.expensesModel.find();
-      const totalExpenses = expenses.reduce((p,n) => p + n.amountPaid , 0)
+      const totalExpenses = expenses.reduce((p, n) => p + n.amountPaid, 0)
       {
         let apiResponse = {
           code: 200,
@@ -318,11 +308,10 @@ export class AccountantService {
         }
         return apiResponse;
       }
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in calculating total expenses"
+        message: error.message
       }
       return apiResponse
     }
@@ -334,7 +323,7 @@ export class AccountantService {
     try {
 
       const salaries = await this.salaryModel.find();
-      const totalSalaries =  salaries.reduce((p,n) => p + n.amountPaid , 0)
+      const totalSalaries = salaries.reduce((p, n) => p + n.amountPaid, 0)
       {
         let apiResponse = {
           code: 200,
@@ -343,11 +332,10 @@ export class AccountantService {
         }
         return apiResponse;
       }
-    } catch
-    {
+    } catch (error) {
       let apiResponse = {
         code: 400,
-        message: "Error in calculating total salaries"
+        message: error.message
       }
       return apiResponse
     }
