@@ -96,7 +96,49 @@ export class TeacherService {
     }
   }
 
+  async viewStuAttendance() {
+    try {
 
+      const stuAttendance = await this.studentAttendanceModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: stuAttendance
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
+
+  async viewTeacherAttendance() {
+    try {
+
+      const teacherAttendance = await this.teacherAttendanceModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: teacherAttendance
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
 
   
 

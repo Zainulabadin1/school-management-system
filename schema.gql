@@ -207,6 +207,18 @@ type MarkStudentAttendanceResponseDto {
   data: StuAttendanceDto
 }
 
+type ViewStudentAttendanceResponseDto {
+  code: Float!
+  message: String!
+  data: [StuAttendanceDto!]
+}
+
+type ViewTeacherAttendanceResponseDto {
+  code: Float!
+  message: String!
+  data: [TeacherAttendanceDto!]
+}
+
 type loginStudentResponseDto {
   code: Float!
   message: String!
@@ -310,6 +322,8 @@ type loginParentResponseDto {
 
 type Query {
   admin: [CreateAdminResponseDto!]!
+  viewStuAttendance: ViewStudentAttendanceResponseDto!
+  viewTeacherAttendance: ViewTeacherAttendanceResponseDto!
   viewFee: ViewFeeRecordResponseDto!
   viewStudentFee(viewSingleFeeRecord: ViewFeeRecordInput!): ViewFeeRecordResponseDto!
   totalFeeCollected: totalFeeCollectedResponseDto!

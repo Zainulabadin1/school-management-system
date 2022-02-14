@@ -1,6 +1,5 @@
 import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
 import { TeacherService } from './teacher.service';
-import { Teacher } from '../entities/teacher.entity';
 
 import { LoginTeacherInput } from './inputs/loginTeacher.input';
 
@@ -11,6 +10,9 @@ import { loginTeacherResponseDto } from './ApiResponsesDto/loginTeacherResponse.
 
 import { MarkTeacherAttendanceResponseDto } from './ApiResponsesDto/markTeacherAttendanceResponse.dto';
 import { MarkStudentAttendanceResponseDto } from './ApiResponsesDto/markStudentAttendanceResponse.dto';
+
+import { ViewStudentAttendanceResponseDto } from './ApiResponsesDto/viewStudentAttendanceResponse.dto';
+import { ViewTeacherAttendanceResponseDto } from './ApiResponsesDto/viewTeacherAttendanceResponse.dto';
 
 @Resolver()
 export class TeacherResolver {
@@ -31,6 +33,15 @@ async studentAttendance(@Args('studentAttendanceInput')studentAttendanceInput: m
   return await this.teacherService.markStudentAttendance(studentAttendanceInput);
 }
 
+@Query(()=> ViewStudentAttendanceResponseDto)
+async viewStuAttendance() {
+  return await this.teacherService.viewStuAttendance();
+}
+
+@Query(()=> ViewTeacherAttendanceResponseDto)
+async viewTeacherAttendance() {
+  return await this.teacherService.viewTeacherAttendance();
+}
 
 
   
