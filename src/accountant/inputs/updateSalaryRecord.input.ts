@@ -6,19 +6,19 @@ export class UpdateSalaryRecordInput {
     @Field(() => ID)
     _id: ObjectId
 
-    @Field()
+    @Field({ nullable: true })
     name: string
 
-    @Field(() => ID)
+    @Field(() => ID, { nullable: true })
     teacherID: ObjectId
 
-    @Field()
+    @Field({ nullable: true })
     employeeId: string
 
-    @Field()
+    @Field({ nullable: true })
     salary: number
 
-    @Field()
+    @Field({ nullable: true })
     fine: number
 
     @Field({ nullable: true })

@@ -6,37 +6,37 @@ export class UpdateStudentInput {
     @Field(() => ID)
     _id: ObjectId
 
-    @Field()
+    @Field({ nullable: true })
     name: string
 
-    @Field()
+    @Field({ nullable: true })
     email: string
 
-    @Field()
+    @Field({ nullable: true })
     password: string
 
-    @Field()
+    @Field({ nullable: true })
     gender: string
 
-    @Field()
+    @Field({ nullable: true })
     religion: string
 
-    @Field()
+    @Field({ nullable: true })
     dob: Date
 
     @Field({nullable: true})
     age: number
 
-    @Field()
+    @Field({ nullable: true })
     address: string
 
-    @Field()
+    @Field({ nullable: true })
     rollNumber: number
 
-    @Field()
+    @Field({ nullable: true })
     class: number
 
-    @Field()
+    @Field({ nullable: true })
     section: string
 
     @Field({nullable: true})

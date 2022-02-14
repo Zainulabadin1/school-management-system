@@ -6,12 +6,12 @@ export class UpdateAdminInput {
   @Field(() => ID)
   _id: ObjectId
 
-  @Field()
+  @Field({ nullable: true })
   name: string
 
-  @Field()
+  @Field({ nullable: true })
   email: string
 
-  @Field()
+  @Field({ nullable: true })
   password: string
 }

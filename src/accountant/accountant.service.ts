@@ -7,15 +7,18 @@ import { LoginAccountantInput } from './inputs/login-accountant.input';
 
 import { EnterFeeInput } from './inputs/enterFee.input';
 import { EnterSalaryInput } from './inputs/enterSalary.input';
+import { EnterExpenseInput } from './inputs/enterExpenses.input';
 
 import { UpdateFeeRecordInput } from './inputs/updateFeeRecord.input';
 import { UpdateSalaryRecordInput } from './inputs/updateSalaryRecord.input';
+import { UpdateExpensesInput } from './inputs/updateExpenses.input';
 
 import { ViewFeeRecordInput } from './inputs/viewFeeRecord.input';
 
 import { Accountant } from '../entities/accountant.entity';
 import { Fees } from '../entities/fees.entity';
 import { Salary } from '../entities/salary.entity';
+import { Expenses } from '../entities/expenses.entity';
 
 @Injectable()
 export class AccountantService {
@@ -23,6 +26,7 @@ export class AccountantService {
     @InjectModel(Accountant.name) private accountantModel: Model<Accountant>,
     @InjectModel(Fees.name) private feesModel: Model<Fees>,
     @InjectModel(Salary.name) private salaryModel: Model<Salary>,
+    @InjectModel(Expenses.name) private expensesModel: Model<Expenses>,
   ) { }
 
   async loginAccountant(loginAccountant: LoginAccountantInput) {
@@ -87,7 +91,7 @@ export class AccountantService {
 
   async updateFeeRecord(updateFeeRecordInput: UpdateFeeRecordInput) {
     try {
-      const record = await this.feesModel.findById(updateFeeRecordInput._id);
+      const record = await this.feesModel.findByIdAndUpdate(updateFeeRecordInput._id, { $set: updateFeeRecordInput }, { new: true });
       if (!record) {
         let apiResponse = {
           code: 404,
@@ -97,13 +101,7 @@ export class AccountantService {
       }
       else {
         var amount = record.monthlyFee - record.Concession
-
-        record.studentId = updateFeeRecordInput.studentId;
-        record.monthlyFee = updateFeeRecordInput.monthlyFee;
-        record.Concession = updateFeeRecordInput.Concession;
-        record.isPaid = updateFeeRecordInput.isPaid;
         record.amountPaid = amount;
-        record.date = updateFeeRecordInput.date;
 
         const updatedFeeRecord = record.save();
 
@@ -196,7 +194,7 @@ export class AccountantService {
 
   async updateSalaryRecord(updateSalaryInput: UpdateSalaryRecordInput) {
     try {
-      const record = await this.salaryModel.findById(updateSalaryInput._id);
+      const record = await this.salaryModel.findByIdAndUpdate(updateSalaryInput._id, { $set: updateSalaryInput }, { new: true });
       if (!record) {
         let apiResponse = {
           code: 404,
@@ -207,14 +205,6 @@ export class AccountantService {
       else {
         var amount = record.salary - record.fine;
         record.amountPaid = amount;
-
-        record.name = updateSalaryInput.name;
-        record.teacherID = updateSalaryInput.teacherID;
-        record.employeeId = updateSalaryInput.employeeId;
-        record.salary = updateSalaryInput.salary;
-        record.fine = updateSalaryInput.fine;
-        record.payingDate = updateSalaryInput.payingDate;
-        record.isPaid = updateSalaryInput.isPaid;
 
         const updatedSalaryRecord = record.save();
 
@@ -237,7 +227,57 @@ export class AccountantService {
   }
 
 
+  async enterExpense(enterExpenseInput: EnterExpenseInput) {
+    try {
+      const enteringExpense = await new this.expensesModel(enterExpenseInput)
 
+      const expenseEntered = enteringExpense.save();
+      let apiResponse = {
+        code: 200,
+        message: "Expense record successfully entered",
+        data: expenseEntered
+      }
+      return apiResponse;
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in entering expense record "
+      }
+      return apiResponse;
+    }
+
+  }
+
+  async updateExpenses(updateExpenseInput: UpdateExpensesInput) {
+    try {
+      const updatedExpenseRecord = await this.expensesModel.findByIdAndUpdate(updateExpenseInput._id, { $set: updateExpenseInput }, { new: true });
+      if (!updatedExpenseRecord) {
+        let apiResponse = {
+          code: 404,
+          message: "Record not found"
+        }
+        return apiResponse
+      }
+      else {
+
+        let apiResponse = {
+          code: 200,
+          message: "Expense record updated successfully",
+          data: updatedExpenseRecord
+        }
+        return apiResponse
+      }
+
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in updating expense record"
+      }
+      return apiResponse
+    }
+  }
 
 
 }

@@ -1,8 +1,8 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { FeesDto } from "../../commonDto/fees.dto";
+import { ExpensesDto } from "../../commonDto/expenses.dto";
 
 @ObjectType()
-export class UpdateFeeRecordResponseDto {
+export class UpdateExpensesResponseDto {
 
     @Field()
     readonly code: number;
@@ -11,6 +11,6 @@ export class UpdateFeeRecordResponseDto {
     readonly message: string;
 
     @Field({ nullable: true })
-    readonly data: FeesDto;
+    readonly data: ExpensesDto;
 
 }

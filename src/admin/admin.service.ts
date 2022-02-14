@@ -242,7 +242,7 @@ export class AdminService {
 
   async updateAccountant(updateAccountantInput: UpdateAccountantInput) {
     try {
-      const accountant = await this.accountantModel.findById(updateAccountantInput._id);
+      const accountant = await this.accountantModel.findByIdAndUpdate(updateAccountantInput._id, { $set: updateAccountantInput }, { new: true });
       if (!accountant) {
         let apiResponse = {
           code: 404,
@@ -256,17 +256,6 @@ export class AdminService {
         var calculatedAge = today - dob;
         accountant.age = calculatedAge
 
-        accountant.name = updateAccountantInput.name;
-        accountant.email = updateAccountantInput.email;
-        accountant.password = updateAccountantInput.password;
-        accountant.contactNumber = updateAccountantInput.contactNumber;
-        accountant.gender = updateAccountantInput.gender;
-        accountant.religion = updateAccountantInput.religion;
-        accountant.dob = updateAccountantInput.dob;
-        accountant.address = updateAccountantInput.address;
-        accountant.employeeId = updateAccountantInput.employeeId;
-        accountant.salary = updateAccountantInput.salary;
-        accountant.isAccountant = updateAccountantInput.isAccountant;
         const updatedaccountant = accountant.save();
 
         let apiResponse = {
@@ -289,8 +278,8 @@ export class AdminService {
 
   async updateAdmin(updateAdminInput: UpdateAdminInput) {
     try {
-      const admin = await this.adminModel.findById(updateAdminInput._id);
-      if (!admin) {
+      const updatedAdmin = await this.adminModel.findByIdAndUpdate(updateAdminInput._id, {$set: updateAdminInput}, {new: true});
+      if (!updatedAdmin) {
         let apiResponse = {
           code: 404,
           message: "Admin not found"
@@ -298,12 +287,7 @@ export class AdminService {
         return apiResponse
       }
       else {
-        admin.name = updateAdminInput.name;
-        admin.email = updateAdminInput.email;
-        admin.password = updateAdminInput.password;
-
-        const updatedAdmin = admin.save();
-
+    
         let apiResponse = {
           code: 200,
           message: "Admin credentials are updated successfully",
@@ -325,8 +309,8 @@ export class AdminService {
 
   async updateParent(updateParentInput: UpdateParentInput) {
     try {
-      const parent = await this.parentModel.findById(updateParentInput._id);
-      if (!parent) {
+      const updatedParent = await this.parentModel.findByIdAndUpdate(updateParentInput._id, { $set: updateParentInput }, { new: true });
+      if (!updatedParent) {
         let apiResponse = {
           code: 404,
           message: "Parent not found"
@@ -334,13 +318,6 @@ export class AdminService {
         return apiResponse
       }
       else {
-        parent.name = updateParentInput.name;
-        parent.email = updateParentInput.email;
-        parent.password = updateParentInput.password;
-        parent.contactNumber = updateParentInput.contactNumber;
-        parent.gender = updateParentInput.gender;
-
-        const updatedParent = parent.save();
 
         let apiResponse = {
           code: 200,
@@ -364,7 +341,7 @@ export class AdminService {
 
   async updateStudent(updateStudentInput: UpdateStudentInput) {
     try {
-      const student = await this.studentModel.findById(updateStudentInput._id);
+      const student = await this.studentModel.findByIdAndUpdate(updateStudentInput._id, { $set: updateStudentInput }, { new: true });
       if (!student) {
         let apiResponse = {
           code: 404,
@@ -377,20 +354,6 @@ export class AdminService {
         var dob = student.dob.getFullYear();
         var calculatedAge = today - dob;
         student.age = calculatedAge
-
-        student.name = updateStudentInput.name;
-        student.email = updateStudentInput.email;
-        student.password = updateStudentInput.password;
-        student.gender = updateStudentInput.gender;
-        student.religion = updateStudentInput.religion;
-        student.dob = updateStudentInput.dob;
-        student.address = updateStudentInput.address;
-        student.rollNumber = updateStudentInput.rollNumber;
-        student.class = updateStudentInput.class;
-        student.section = updateStudentInput.section;
-        student.isStudent = updateStudentInput.isStudent;
-        student.parentId = updateStudentInput.parentId;
-
 
         const updatedStudent = student.save();
 
@@ -415,8 +378,8 @@ export class AdminService {
 
   async updateSubject(updateSubjectInput: UpdateSubjectInput) {
     try {
-      const subject = await this.subjectsModel.findById(updateSubjectInput._id);
-      if (!subject) {
+      const updatedSubject = await this.subjectsModel.findByIdAndUpdate(updateSubjectInput._id, { $set: updateSubjectInput }, { new: true });
+      if (!updatedSubject) {
         let apiResponse = {
           code: 404,
           message: "Subject not found"
@@ -424,14 +387,9 @@ export class AdminService {
         return apiResponse
       }
       else {
-        subject.name = updateSubjectInput.name;
-        subject.subjectCode = updateSubjectInput.subjectCode;
-
-        const updatedSubject = subject.save();
-
         let apiResponse = {
           code: 200,
-          message: "Subject information id updated successfully",
+          message: "Subject information is updated successfully",
           data: updatedSubject
         }
         return apiResponse
@@ -450,7 +408,7 @@ export class AdminService {
 
   async updateTeacher(updateTeacherInput: UpdateTeacherInput) {
     try {
-      const teacher = await this.teacherModel.findById(updateTeacherInput._id);
+      const teacher = await this.teacherModel.findByIdAndUpdate(updateTeacherInput._id, { $set: updateTeacherInput }, { new: true });
       if (!teacher) {
         let apiResponse = {
           code: 404,
@@ -463,19 +421,6 @@ export class AdminService {
         var dob = teacher.dob.getFullYear();
         var calculatedAge = today - dob;
         teacher.age = calculatedAge
-
-        teacher.name = updateTeacherInput.name;
-        teacher.email = updateTeacherInput.email;
-        teacher.password = updateTeacherInput.password;
-        teacher.contactNumber = updateTeacherInput.contactNumber;
-        teacher.gender = updateTeacherInput.gender;
-        teacher.religion = updateTeacherInput.religion;
-        teacher.dob = updateTeacherInput.dob;
-        teacher.address = updateTeacherInput.address;
-        teacher.employeeId = updateTeacherInput.employeeId;
-        teacher.salary = updateTeacherInput.salary;
-        teacher.isTeacher = updateTeacherInput.isTeacher;
-        teacher.name = updateTeacherInput.name;
 
         const updatedTeacher = teacher.save();
 
@@ -500,8 +445,8 @@ export class AdminService {
 
   async updateTimetable(updateTimetableInput: UpdateTimetableInput) {
     try {
-      const timetable = await this.timetableModel.findById(updateTimetableInput._id);
-      if (!timetable) {
+      const updatedTimetable = await this.timetableModel.findByIdAndUpdate(updateTimetableInput._id, { $set: updateTimetableInput }, { new: true });
+      if (!updatedTimetable) {
         let apiResponse = {
           code: 404,
           message: "Timetable entry not found"
@@ -509,15 +454,6 @@ export class AdminService {
         return apiResponse
       }
       else {
-        timetable.teacherId = updateTimetableInput.teacherId;
-        timetable.day = updateTimetableInput.day;
-        timetable.slot = updateTimetableInput.slot;
-        timetable.class = updateTimetableInput.class;
-        timetable.subject = updateTimetableInput.subject;
-        timetable.roomNo = updateTimetableInput.roomNo;
-
-        const updatedTimetable = timetable.save();
-
         let apiResponse = {
           code: 200,
           message: "TimetableModel slot updated successfully",

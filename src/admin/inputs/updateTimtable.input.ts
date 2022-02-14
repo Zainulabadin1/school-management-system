@@ -6,22 +6,22 @@ export class UpdateTimetableInput {
     @Field(() => ID)
     _id: ObjectId
 
-    @Field(() => ID)
+    @Field(() => ID, { nullable: true })
     teacherId: ObjectId
 
-    @Field()
+    @Field({ nullable: true })
     day: string
 
-    @Field()
+    @Field({ nullable: true })
     slot: string
 
-    @Field()
+    @Field({ nullable: true })
     class: string
 
-    @Field(() => ID)
+    @Field(() => ID, { nullable: true })
     subject: ObjectId
 
-    @Field()
+    @Field({ nullable: true })
     roomNo: number
   
 }

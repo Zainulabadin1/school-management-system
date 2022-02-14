@@ -2,26 +2,17 @@ import { InputType, Field, ID } from '@nestjs/graphql';
 import { ObjectId } from 'mongoose';
 
 @InputType()
-export class UpdateFeeRecordInput {
+export class UpdateExpensesInput {
     @Field(() => ID)
     _id: ObjectId
 
-    @Field(() => ID, { nullable: true })
-    studentId: ObjectId
+    @Field({ nullable: true })
+    expenseDetail: string
 
     @Field({ nullable: true })
-    monthlyFee: number
-
-    @Field({ nullable: true })
-    Concession: number
-
-    @Field({ nullable: true })
-    isPaid: boolean
+    payingDate: Date
 
     @Field({ nullable: true })
     amountPaid: number
-
-    @Field({ nullable: true })
-    date: Date
 
 }

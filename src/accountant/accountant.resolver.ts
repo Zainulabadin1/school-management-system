@@ -5,9 +5,11 @@ import { LoginAccountantInput } from './inputs/login-accountant.input';
 
 import { EnterFeeInput } from './inputs/enterFee.input';
 import { EnterSalaryInput } from './inputs/enterSalary.input';
+import { EnterExpenseInput } from './inputs/enterExpenses.input';
 
 import { UpdateFeeRecordInput } from './inputs/updateFeeRecord.input';
 import { UpdateSalaryRecordInput } from './inputs/updateSalaryRecord.input';
+import { UpdateExpensesInput } from './inputs/updateExpenses.input';
 
 import { ViewFeeRecordInput } from './inputs/viewFeeRecord.input';
 
@@ -16,11 +18,14 @@ import { loginAccountantResponseDto } from './ApiResponsesDto/loginAccountantRes
 
 import { EnterFeeResponseDto } from './ApiResponsesDto/enterFeeResponse.dto';
 import { EnterSalaryResponseDto } from './ApiResponsesDto/enterSalaryResponse.dto';
+import { EnterExpenseResponseDto } from './ApiResponsesDto/enterExpenseResponse.dto';
 
 import { UpdateFeeRecordResponseDto } from './ApiResponsesDto/updateFeeRecordResponse.dto';
 import { UpdateSalaryRecordResponseDto } from './ApiResponsesDto/updateSalaryRecordResponse.dto';
+import { UpdateExpensesResponseDto } from './ApiResponsesDto/updateExpensesResponse.dto';
 
 import { ViewFeeRecordResponseDto } from './ApiResponsesDto/viewFeeRecordResponse.dto';
+import { utimes } from 'fs';
 
 
 
@@ -59,9 +64,23 @@ export class AccountantResolver {
     return await this.accountantService.enterSalary(enterSalaryInput);
   }
 
-  @Mutation(()=> UpdateSalaryRecordResponseDto)
-  async updateSalaryRecord(@Args('updateSalaryInput')updateSalaryInput: UpdateSalaryRecordInput) {
+  @Mutation(() => UpdateSalaryRecordResponseDto)
+  async updateSalaryRecord(@Args('updateSalaryInput') updateSalaryInput: UpdateSalaryRecordInput) {
     return await this.accountantService.updateSalaryRecord(updateSalaryInput);
   }
+
+  @Mutation(() => EnterExpenseResponseDto)
+  async enterExpense(@Args('enterExpenseInput') enterExpenseInput: EnterExpenseInput) {
+    return await this.accountantService.enterExpense(enterExpenseInput);
+  }
+
+  @Mutation(() => UpdateExpensesResponseDto)
+  async updateExpenses(@Args('updateExpenseInput') updateExpenseInput: UpdateExpensesInput) {
+    return await this.accountantService.updateExpenses(updateExpenseInput);
+  }
+
+
+
+
 
 }
