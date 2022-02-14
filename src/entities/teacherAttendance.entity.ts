@@ -5,9 +5,8 @@ import { Document } from 'mongoose';
 import * as mongoose from 'mongoose';
 
 
-
 @Schema({ collection: 'teachers-attendance' })
-export class teacherAttendance extends Document {
+export class TeacherAttendance extends Document {
 
     @Prop({ type: mongoose.Schema.Types.ObjectId, ref: 'teachers' })
     teacherId: mongoose.Schema.Types.ObjectId
@@ -19,4 +18,4 @@ export class teacherAttendance extends Document {
     date: Date
 }
 
-export const studentAttendanceSchema = SchemaFactory.createForClass(teacherAttendance);
+export const TeacherAttendanceSchema = SchemaFactory.createForClass(TeacherAttendance);

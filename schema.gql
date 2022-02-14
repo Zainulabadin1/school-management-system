@@ -183,6 +183,18 @@ type loginTeacherResponseDto {
   message: String!
 }
 
+type TeacherAttendanceDto {
+  teacherId: ID!
+  isPresent: Boolean!
+  date: DateTime
+}
+
+type MarkTeacherAttendanceResponseDto {
+  code: Float!
+  message: String!
+  data: TeacherAttendanceDto
+}
+
 type loginStudentResponseDto {
   code: Float!
   message: String!
@@ -320,6 +332,7 @@ type Mutation {
   updateTeacher(updateTeacherInput: UpdateTeacherInput!): UpdateTeacherResponseDto!
   updateTimetable(updateTimetableInput: UpdateTimetableInput!): UpdateTimetableResponseDto!
   loginTeacher(loginTeacherInput: LoginTeacherInput!): loginTeacherResponseDto!
+  teacherAttendance(teacherAttendanceInput: markTeacherAttendanceInput!): MarkTeacherAttendanceResponseDto!
   loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
   enterFee(enterFeeInput: EnterFeeInput!): EnterFeeResponseDto!
@@ -499,6 +512,12 @@ input UpdateTimetableInput {
 input LoginTeacherInput {
   email: String!
   password: String!
+}
+
+input markTeacherAttendanceInput {
+  teacherId: ID!
+  isPresent: Boolean!
+  date: DateTime
 }
 
 input LoginStudentInput {

@@ -4,16 +4,25 @@ import { Teacher } from '../entities/teacher.entity';
 
 import { LoginTeacherInput } from './inputs/loginTeacher.input';
 
+import { markTeacherAttendanceInput } from './inputs/markTeacherAttendance.input';
+
 import { loginTeacherResponseDto } from './ApiResponsesDto/loginTeacherResponse.dto';
+
+import { MarkTeacherAttendanceResponseDto } from './ApiResponsesDto/markTeacherAttendanceResponse.dto';
 
 @Resolver()
 export class TeacherResolver {
   constructor(private readonly teacherService: TeacherService) {}
 
   @Mutation(()=> loginTeacherResponseDto)
- loginTeacher (@Args('loginTeacherInput')loginStudentInput: LoginTeacherInput) {
-   return this.teacherService.loginTeacher(loginStudentInput);
+async loginTeacher (@Args('loginTeacherInput')loginStudentInput: LoginTeacherInput) {
+   return await this.teacherService.loginTeacher(loginStudentInput);
  }
+
+ @Mutation(()=> MarkTeacherAttendanceResponseDto)
+async teacherAttendance(@Args('teacherAttendanceInput')teacherAttendanceInput: markTeacherAttendanceInput){
+  return await this.teacherService.markTeacherAttendance(teacherAttendanceInput);
+}
 
   
 }

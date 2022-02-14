@@ -4,13 +4,17 @@ import { Model } from 'mongoose';
 
 import { LoginTeacherInput } from './inputs/loginTeacher.input';
 
+import { markTeacherAttendanceInput } from './inputs/markTeacherAttendance.input';
+
 import { Teacher } from '../entities/teacher.entity';
+import { TeacherAttendance } from '../entities/teacherAttendance.entity';
 
 @Injectable()
 export class TeacherService {
 
   constructor(
     @InjectModel(Teacher.name) private readonly teacherModel: Model<Teacher>,
+    @InjectModel(TeacherAttendance.name) private readonly teacherAttendanceModel: Model<TeacherAttendance>,
   ) { }
 
   async loginTeacher(loginTeacher: LoginTeacherInput) {
@@ -38,16 +42,36 @@ export class TeacherService {
         return apiResponse
       }
     }
-    catch
+    catch (error)
     {
       let apiResponse = {
         code: 204,
-        message: "Some error in logging in"
+        message: error.message
       }
 
       return apiResponse
     }
   }
+
+  async markTeacherAttendance(teacherAttendanceInput: markTeacherAttendanceInput) {
+    try {
+      const teacherAttendance = await new this.teacherAttendanceModel(teacherAttendanceInput)
+      const attendanceMarked = teacherAttendance.save();
+      let apiResponse = {
+        code: 200,
+        message: "Teacher attendance marked successfully",
+        data: attendanceMarked
+      }
+      return apiResponse;
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse;
+    }
+  }
+
 
 
 

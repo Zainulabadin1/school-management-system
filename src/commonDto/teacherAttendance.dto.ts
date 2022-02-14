@@ -1,14 +1,14 @@
-import { Field, ObjectType } from "@nestjs/graphql";
+import { Field, ID, ObjectType } from "@nestjs/graphql";
 import * as mongoose from 'mongoose';
 
 @ObjectType()
-export class teacherAttendanceDto{
-    @Field()
+export class TeacherAttendanceDto{
+    @Field(()=> ID)
     teacherId: mongoose.Schema.Types.ObjectId
 
     @Field()
     isPresent: boolean
 
-    @Field()
+    @Field({nullable: true})
     date: Date
 }
