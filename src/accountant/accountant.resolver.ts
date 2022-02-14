@@ -25,8 +25,9 @@ import { UpdateSalaryRecordResponseDto } from './ApiResponsesDto/updateSalaryRec
 import { UpdateExpensesResponseDto } from './ApiResponsesDto/updateExpensesResponse.dto';
 
 import { ViewFeeRecordResponseDto } from './ApiResponsesDto/viewFeeRecordResponse.dto';
-import { utimes } from 'fs';
-
+import { totalFeeCollectedResponseDto } from './ApiResponsesDto/totalFeeCollectedResponse.dto';
+import { totalExpensesResponseDto } from './ApiResponsesDto/totalExpensesResponse.dto';
+import { totalSalariesResponseDto } from './ApiResponsesDto/totalSalariesResponse.dto';
 
 
 @Resolver()
@@ -78,6 +79,22 @@ export class AccountantResolver {
   async updateExpenses(@Args('updateExpenseInput') updateExpenseInput: UpdateExpensesInput) {
     return await this.accountantService.updateExpenses(updateExpenseInput);
   }
+
+
+  @Query(() => totalFeeCollectedResponseDto)
+  async totalFeeCollected() {
+    return await this.accountantService.totalFeeCollected();
+  }
+
+@Query(()=> totalExpensesResponseDto)
+async totalExpensesCollected(){
+  return await this.accountantService.totalExpensesCollected();
+}
+
+@Query(()=> totalSalariesResponseDto)
+async totalSalaries(){
+  return await this.accountantService.totalSalariesPaid();
+}
 
 
 

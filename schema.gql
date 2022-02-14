@@ -261,6 +261,24 @@ type ViewFeeRecordResponseDto {
   data: [FeesDto!]
 }
 
+type totalFeeCollectedResponseDto {
+  code: Float!
+  message: String!
+  totalFeePaid: Float
+}
+
+type totalExpensesResponseDto {
+  code: Float!
+  message: String!
+  totalExpenses: Float
+}
+
+type totalSalariesResponseDto {
+  code: Float!
+  message: String!
+  totalSalariesPaid: Float
+}
+
 type loginParentResponseDto {
   code: Float!
   message: String!
@@ -270,6 +288,9 @@ type Query {
   admin: [CreateAdminResponseDto!]!
   viewFee: ViewFeeRecordResponseDto!
   viewStudentFee(viewSingleFeeRecord: ViewFeeRecordInput!): ViewFeeRecordResponseDto!
+  totalFeeCollected: totalFeeCollectedResponseDto!
+  totalExpensesCollected: totalExpensesResponseDto!
+  totalSalaries: totalSalariesResponseDto!
 }
 
 input ViewFeeRecordInput {
@@ -394,50 +415,50 @@ input LoginAdminInput {
 
 input UpdateAccountantInput {
   _id: ID!
-  name: String!
-  email: String!
-  password: String!
-  contactNumber: Float!
+  name: String
+  email: String
+  password: String
+  contactNumber: Float
   gender: String
-  religion: String!
-  dob: DateTime!
+  religion: String
+  dob: DateTime
   age: Float
-  address: String!
-  employeeId: String!
-  salary: Float!
+  address: String
+  employeeId: String
+  salary: Float
   joiningDate: DateTime
   isAccountant: Boolean
 }
 
 input UpdateAdminInput {
   _id: ID!
-  name: String!
-  email: String!
-  password: String!
+  name: String
+  email: String
+  password: String
 }
 
 input UpdateParentInput {
   _id: ID!
-  name: String!
-  email: String!
-  password: String!
-  gender: String!
-  contactNumber: Float!
+  name: String
+  email: String
+  password: String
+  gender: String
+  contactNumber: Float
 }
 
 input UpdateStudentInput {
   _id: ID!
-  name: String!
-  email: String!
-  password: String!
-  gender: String!
-  religion: String!
-  dob: DateTime!
+  name: String
+  email: String
+  password: String
+  gender: String
+  religion: String
+  dob: DateTime
   age: Float
-  address: String!
-  rollNumber: Float!
-  class: Float!
-  section: String!
+  address: String
+  rollNumber: Float
+  class: Float
+  section: String
   isStudent: Boolean
   joiningDate: DateTime
   parentId: ID
@@ -445,34 +466,34 @@ input UpdateStudentInput {
 
 input UpdateSubjectInput {
   _id: ID!
-  name: String!
-  subjectCode: String!
+  name: String
+  subjectCode: String
 }
 
 input UpdateTeacherInput {
   _id: ID!
-  name: String!
-  email: String!
-  password: String!
-  contactNumber: Float!
-  gender: String!
-  religion: String!
-  dob: DateTime!
+  name: String
+  email: String
+  password: String
+  contactNumber: Float
+  gender: String
+  religion: String
+  dob: DateTime
   age: Float
-  address: String!
-  employeeId: String!
-  salary: Float!
+  address: String
+  employeeId: String
+  salary: Float
   isTeacher: Boolean
 }
 
 input UpdateTimetableInput {
   _id: ID!
-  teacherId: ID!
-  day: String!
-  slot: String!
-  class: String!
-  subject: ID!
-  roomNo: Float!
+  teacherId: ID
+  day: String
+  slot: String
+  class: String
+  subject: ID
+  roomNo: Float
 }
 
 input LoginTeacherInput {
@@ -501,10 +522,10 @@ input EnterFeeInput {
 
 input UpdateFeeRecordInput {
   _id: ID!
-  studentId: ID!
-  monthlyFee: Float!
-  Concession: Float!
-  isPaid: Boolean!
+  studentId: ID
+  monthlyFee: Float
+  Concession: Float
+  isPaid: Boolean
   amountPaid: Float
   date: DateTime
 }
@@ -522,11 +543,11 @@ input EnterSalaryInput {
 
 input UpdateSalaryRecordInput {
   _id: ID!
-  name: String!
-  teacherID: ID!
-  employeeId: String!
-  salary: Float!
-  fine: Float!
+  name: String
+  teacherID: ID
+  employeeId: String
+  salary: Float
+  fine: Float
   payingDate: DateTime
   isPaid: Boolean
   amountPaid: Float
@@ -540,9 +561,9 @@ input EnterExpenseInput {
 
 input UpdateExpensesInput {
   _id: ID!
-  expenseDetail: String!
+  expenseDetail: String
   payingDate: DateTime
-  amountPaid: Float!
+  amountPaid: Float
 }
 
 input LoginParentInput {

@@ -1,5 +1,4 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { type } from "os";
 import { FeesDto } from "../../commonDto/fees.dto";
 
 @ObjectType()

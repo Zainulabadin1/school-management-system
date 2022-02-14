@@ -280,4 +280,78 @@ export class AccountantService {
   }
 
 
+  async totalFeeCollected() {
+    try {
+
+      const feeResults = await this.feesModel.find();
+      const totalFee = feeResults.reduce((p,n) => p + n.amountPaid , 0)
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          totalFeePaid: totalFee
+        }
+        return apiResponse;
+      }
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in calculating total fee"
+      }
+      return apiResponse
+    }
+
+  }
+
+
+  async totalExpensesCollected() {
+    try {
+
+      const expenses = await this.expensesModel.find();
+      const totalExpenses = expenses.reduce((p,n) => p + n.amountPaid , 0)
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Expenses record found",
+          totalExpenses: totalExpenses
+        }
+        return apiResponse;
+      }
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in calculating total expenses"
+      }
+      return apiResponse
+    }
+
+  }
+
+
+  async totalSalariesPaid() {
+    try {
+
+      const salaries = await this.salaryModel.find();
+      const totalSalaries =  salaries.reduce((p,n) => p + n.amountPaid , 0)
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Salaries record found",
+          totalSalariesPaid: totalSalaries
+        }
+        return apiResponse;
+      }
+    } catch
+    {
+      let apiResponse = {
+        code: 400,
+        message: "Error in calculating total salaries"
+      }
+      return apiResponse
+    }
+
+  }
+
 }
