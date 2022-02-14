@@ -195,6 +195,18 @@ type MarkTeacherAttendanceResponseDto {
   data: TeacherAttendanceDto
 }
 
+type StuAttendanceDto {
+  studentId: ID!
+  isPresent: Boolean!
+  date: DateTime
+}
+
+type MarkStudentAttendanceResponseDto {
+  code: Float!
+  message: String!
+  data: StuAttendanceDto
+}
+
 type loginStudentResponseDto {
   code: Float!
   message: String!
@@ -333,6 +345,7 @@ type Mutation {
   updateTimetable(updateTimetableInput: UpdateTimetableInput!): UpdateTimetableResponseDto!
   loginTeacher(loginTeacherInput: LoginTeacherInput!): loginTeacherResponseDto!
   teacherAttendance(teacherAttendanceInput: markTeacherAttendanceInput!): MarkTeacherAttendanceResponseDto!
+  studentAttendance(studentAttendanceInput: markStudentAttendanceInput!): MarkStudentAttendanceResponseDto!
   loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
   enterFee(enterFeeInput: EnterFeeInput!): EnterFeeResponseDto!
@@ -516,6 +529,12 @@ input LoginTeacherInput {
 
 input markTeacherAttendanceInput {
   teacherId: ID!
+  isPresent: Boolean!
+  date: DateTime
+}
+
+input markStudentAttendanceInput {
+  studentId: ID!
   isPresent: Boolean!
   date: DateTime
 }
