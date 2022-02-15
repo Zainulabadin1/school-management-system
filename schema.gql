@@ -219,6 +219,50 @@ type ViewTeacherAttendanceResponseDto {
   data: [TeacherAttendanceDto!]
 }
 
+type AssignmentDto {
+  studentId: ID!
+  assignmentNumber: Float!
+  totalMarks: Float!
+  isSubmitted: Boolean!
+  obtainedMarks: Float!
+  class: Float!
+  subject: ID!
+}
+
+type AssignmentMarksResponseDto {
+  code: Float!
+  message: String!
+  data: AssignmentDto
+}
+
+type QuizzesDto {
+  studentId: ID!
+  quizNumber: Float!
+  totalMarks: Float!
+  isSubmitted: Boolean!
+  obtainedMarks: Float!
+  class: Float!
+  subject: ID!
+}
+
+type QuizMarksResponseDto {
+  code: Float!
+  message: String!
+  data: QuizzesDto
+}
+
+type UpdateAssignmentMarksResponseDto {
+  code: Float!
+  message: String!
+  data: AssignmentDto
+}
+
+type UpdateQuizMarksResponseDto {
+  code: Float!
+  message: String!
+  data: QuizzesDto
+}
+
 type loginStudentResponseDto {
   code: Float!
   message: String!
@@ -360,6 +404,10 @@ type Mutation {
   loginTeacher(loginTeacherInput: LoginTeacherInput!): loginTeacherResponseDto!
   teacherAttendance(teacherAttendanceInput: markTeacherAttendanceInput!): MarkTeacherAttendanceResponseDto!
   studentAttendance(studentAttendanceInput: markStudentAttendanceInput!): MarkStudentAttendanceResponseDto!
+  enterAssignmentMarks(assignmentMarksInput: AssignmentMarksInput!): AssignmentMarksResponseDto!
+  updateAssignmentMarks(updateAssignmentMarksInput: UpdateAssignmentMarksInput!): UpdateAssignmentMarksResponseDto!
+  enterQuizMarks(quizMarksInput: QuizMarksInput!): QuizMarksResponseDto!
+  updateQuizMarks(updateQuizMarksInput: UpdateQuizMarksInput!): UpdateQuizMarksResponseDto!
   loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
   enterFee(enterFeeInput: EnterFeeInput!): EnterFeeResponseDto!
@@ -551,6 +599,48 @@ input markStudentAttendanceInput {
   studentId: ID!
   isPresent: Boolean!
   date: DateTime
+}
+
+input AssignmentMarksInput {
+  studentId: ID!
+  assignmentNumber: Float!
+  totalMarks: Float!
+  isSubmitted: Boolean!
+  obtainedMarks: Float!
+  class: Float!
+  subject: ID!
+}
+
+input UpdateAssignmentMarksInput {
+  _id: ID!
+  studentId: ID
+  assignmentNumber: Float
+  totalMarks: Float
+  isSubmitted: Boolean
+  obtainedMarks: Float
+  class: Float
+  subject: ID
+}
+
+input QuizMarksInput {
+  studentId: ID!
+  quizNumber: Float!
+  totalMarks: Float!
+  isSubmitted: Boolean!
+  obtainedMarks: Float!
+  class: Float!
+  subject: ID!
+}
+
+input UpdateQuizMarksInput {
+  _id: ID!
+  studentId: ID!
+  quizNumber: Float
+  totalMarks: Float
+  isSubmitted: Boolean
+  obtainedMarks: Float
+  class: Float
+  subject: ID
 }
 
 input LoginStudentInput {
