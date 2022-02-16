@@ -8,6 +8,7 @@ import { TeacherAttendance, TeacherAttendanceSchema } from '../entities/teacherA
 import { StudentAttendance, StudentAttendanceSchema } from '../entities/stuAttendance.entity';
 import { Assignments, AssignmentsSchema } from '../entities/assignment.entity';
 import { Quizzes, QuizzesSchema } from '../entities/quizzes.entity';
+import { Papers, PapersSchema } from '../entities/papers.entity';
 
 @Module({
   imports: [
@@ -25,6 +26,9 @@ import { Quizzes, QuizzesSchema } from '../entities/quizzes.entity';
 
     MongooseModule.forFeature([
       { name: Quizzes.name, schema: QuizzesSchema }]),
+
+    MongooseModule.forFeature([
+      { name: Papers.name, schema: PapersSchema }]),
   ],
   providers: [TeacherResolver, TeacherService]
 })

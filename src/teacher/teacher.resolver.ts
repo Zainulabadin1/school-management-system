@@ -8,9 +8,13 @@ import { markStudentAttendanceInput } from './inputs/markStudentAttendance.input
 
 import { AssignmentMarksInput } from './inputs/enterAssignmentMarks.input';
 import { QuizMarksInput } from './inputs/enterQuizMarks.input';
+import { PaperMarksInput } from './inputs/enterPaperMarks.input';
 
 import { UpdateAssignmentMarksInput } from './inputs/updateAssignmentMarks.input';
 import { UpdateQuizMarksInput } from './inputs/updateQuizMarks.input';
+import { UpdatePaperMarksInput } from './inputs/updatePaperMarks.inputs';
+
+import { ViewStudentAttendanceInput } from './inputs/viewStudentAttendance.input';
 
 import { loginTeacherResponseDto } from './ApiResponsesDto/loginTeacherResponse.dto';
 
@@ -22,9 +26,11 @@ import { ViewTeacherAttendanceResponseDto } from './ApiResponsesDto/viewTeacherA
 
 import { AssignmentMarksResponseDto } from './ApiResponsesDto/enterAssignmentMarksResponse.dto';
 import { QuizMarksResponseDto } from './ApiResponsesDto/enterQuizMarksResponse.dto';
+import { PaperMarksResponseDto } from './ApiResponsesDto/enterPaperMarksResponse.dto';
 
 import { UpdateAssignmentMarksResponseDto } from './ApiResponsesDto/updateAssignmentMarksResponse.dto';
 import { UpdateQuizMarksResponseDto } from './ApiResponsesDto/updateQuizMarksResponse.dto';
+import { UpdatePaperMarksResponseDto } from './ApiResponsesDto/updatePaperMarksResponse.dto';
 
 @Resolver()
 export class TeacherResolver {
@@ -60,15 +66,24 @@ export class TeacherResolver {
     return await this.teacherService.enterQuizMarks(quizMarksInput);
   }
 
-
   @Mutation(() => UpdateQuizMarksResponseDto)
   async updateQuizMarks(@Args('updateQuizMarksInput') updateQuizMarksInput: UpdateQuizMarksInput) {
     return await this.teacherService.updateQuizMarks(updateQuizMarksInput);
   }
 
+  @Mutation(() => PaperMarksResponseDto)
+  async enterPaperMarks(@Args('paperMarksInput') paperMarksInput: PaperMarksInput) {
+    return await this.teacherService.enterPaperMarks(paperMarksInput);
+  }
+
+  @Mutation(() => UpdatePaperMarksResponseDto)
+  async updatePaperMarks(@Args('updatePaperMarksInput') updatePaperMarksInput: UpdatePaperMarksInput) {
+    return await this.teacherService.updatePaperMarks(updatePaperMarksInput);
+  }
+
   @Query(() => ViewStudentAttendanceResponseDto)
-  async viewStuAttendance() {
-    return await this.teacherService.viewStuAttendance();
+  async viewAllStuAttendance() {
+    return await this.teacherService.viewAllStuAttendance();
   }
 
   @Query(() => ViewTeacherAttendanceResponseDto)
@@ -76,6 +91,9 @@ export class TeacherResolver {
     return await this.teacherService.viewTeacherAttendance();
   }
 
-
+  @Query(() => ViewStudentAttendanceResponseDto)
+  async viewStudentAttendance(@Args('viewstuAttendanceInput') viewstuAttendanceInput: ViewStudentAttendanceInput) {
+    return await this.teacherService.viewStuAttendance(viewstuAttendanceInput);
+  }
 
 }

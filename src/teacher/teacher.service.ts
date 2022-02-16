@@ -9,15 +9,20 @@ import { markStudentAttendanceInput } from './inputs/markStudentAttendance.input
 
 import { AssignmentMarksInput } from './inputs/enterAssignmentMarks.input';
 import { QuizMarksInput } from './inputs/enterQuizMarks.input';
+import { PaperMarksInput } from './inputs/enterPaperMarks.input';
 
 import { UpdateAssignmentMarksInput } from './inputs/updateAssignmentMarks.input';
 import { UpdateQuizMarksInput } from './inputs/updateQuizMarks.input';
+import { UpdatePaperMarksInput } from './inputs/updatePaperMarks.inputs';
+
+import { ViewStudentAttendanceInput } from './inputs/viewStudentAttendance.input';
 
 import { Teacher } from '../entities/teacher.entity';
 import { TeacherAttendance } from '../entities/teacherAttendance.entity';
 import { StudentAttendance } from '../entities/stuAttendance.entity';
 import { Assignments } from '../entities/assignment.entity';
 import { Quizzes } from '../entities/quizzes.entity';
+import { Papers } from '../entities/papers.entity';
 
 @Injectable()
 export class TeacherService {
@@ -28,6 +33,7 @@ export class TeacherService {
     @InjectModel(StudentAttendance.name) private readonly studentAttendanceModel: Model<StudentAttendance>,
     @InjectModel(Assignments.name) private readonly assignmentsModel: Model<Assignments>,
     @InjectModel(Quizzes.name) private readonly quizzesModel: Model<Quizzes>,
+    @InjectModel(Papers.name) private readonly papersModel: Model<Papers>,
   ) { }
 
   async loginTeacher(loginTeacher: LoginTeacherInput) {
@@ -104,7 +110,7 @@ export class TeacherService {
     }
   }
 
-  async viewStuAttendance() {
+  async viewAllStuAttendance() {
     try {
 
       const stuAttendance = await this.studentAttendanceModel.find();
@@ -247,7 +253,74 @@ export class TeacherService {
     }
   }
 
+  async enterPaperMarks(paperMarksInput: PaperMarksInput) {
+    try {
+      const paperMarks = await new this.papersModel(paperMarksInput)
+      const enteredpaperMarks = paperMarks.save();
+      let apiResponse = {
+        code: 200,
+        message: "Student paper marks added successfully",
+        data: enteredpaperMarks
+      }
+      return apiResponse;
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse;
+    }
+  }
 
+  async updatePaperMarks(updatePaperMarksInput: UpdatePaperMarksInput) {
+    try {
+      const updatedpaperMarks = await this.papersModel.findByIdAndUpdate(updatePaperMarksInput._id, { $set: updatePaperMarksInput }, { new: true });
+      if (!updatedpaperMarks) {
+        let apiResponse = {
+          code: 404,
+          message: "Record not found"
+        }
+        return apiResponse
+      }
+      else {
 
+        let apiResponse = {
+          code: 200,
+          message: "Paper marks updated successfully",
+          data: updatedpaperMarks
+        }
+        return apiResponse
+      }
+
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+  }
+
+  async viewStuAttendance(viewstuAttendanceInput: ViewStudentAttendanceInput) {
+    try {
+
+      const stuAttendance = await this.studentAttendanceModel.find({ studentId: { $eq: viewstuAttendanceInput.studentId } });
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: stuAttendance
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
 
 }

@@ -251,6 +251,22 @@ type QuizMarksResponseDto {
   data: QuizzesDto
 }
 
+type PaperDto {
+  studentId: ID!
+  class: Float!
+  subject: ID!
+  totalMarks: Float!
+  obtainedMarks: Float!
+  paperType: String!
+  isSubmitted: Boolean!
+}
+
+type PaperMarksResponseDto {
+  code: Float!
+  message: String!
+  data: PaperDto
+}
+
 type UpdateAssignmentMarksResponseDto {
   code: Float!
   message: String!
@@ -261,6 +277,12 @@ type UpdateQuizMarksResponseDto {
   code: Float!
   message: String!
   data: QuizzesDto
+}
+
+type UpdatePaperMarksResponseDto {
+  code: Float!
+  message: String!
+  data: PaperDto
 }
 
 type loginStudentResponseDto {
@@ -366,13 +388,21 @@ type loginParentResponseDto {
 
 type Query {
   admin: [CreateAdminResponseDto!]!
-  viewStuAttendance: ViewStudentAttendanceResponseDto!
+  viewAllStuAttendance: ViewStudentAttendanceResponseDto!
   viewTeacherAttendance: ViewTeacherAttendanceResponseDto!
+  viewStudentAttendance(viewstuAttendanceInput: ViewStudentAttendanceInput!): ViewStudentAttendanceResponseDto!
   viewFee: ViewFeeRecordResponseDto!
   viewStudentFee(viewSingleFeeRecord: ViewFeeRecordInput!): ViewFeeRecordResponseDto!
   totalFeeCollected: totalFeeCollectedResponseDto!
   totalExpensesCollected: totalExpensesResponseDto!
   totalSalaries: totalSalariesResponseDto!
+}
+
+input ViewStudentAttendanceInput {
+  _id: ID
+  studentId: ID
+  isPresent: Boolean
+  date: DateTime
 }
 
 input ViewFeeRecordInput {
@@ -408,6 +438,8 @@ type Mutation {
   updateAssignmentMarks(updateAssignmentMarksInput: UpdateAssignmentMarksInput!): UpdateAssignmentMarksResponseDto!
   enterQuizMarks(quizMarksInput: QuizMarksInput!): QuizMarksResponseDto!
   updateQuizMarks(updateQuizMarksInput: UpdateQuizMarksInput!): UpdateQuizMarksResponseDto!
+  enterPaperMarks(paperMarksInput: PaperMarksInput!): PaperMarksResponseDto!
+  updatePaperMarks(updatePaperMarksInput: UpdatePaperMarksInput!): UpdatePaperMarksResponseDto!
   loginStudent(loginStudentInput: LoginStudentInput!): loginStudentResponseDto!
   loginAccountant(loginAccountantInput: LoginAccountantInput!): loginAccountantResponseDto!
   enterFee(enterFeeInput: EnterFeeInput!): EnterFeeResponseDto!
@@ -641,6 +673,27 @@ input UpdateQuizMarksInput {
   obtainedMarks: Float
   class: Float
   subject: ID
+}
+
+input PaperMarksInput {
+  studentId: ID!
+  class: Float!
+  subject: ID!
+  totalMarks: Float!
+  obtainedMarks: Float!
+  paperType: String!
+  isSubmitted: Boolean!
+}
+
+input UpdatePaperMarksInput {
+  _id: ID!
+  studentId: ID!
+  class: Float
+  subject: ID
+  totalMarks: Float
+  obtainedMarks: Float
+  paperType: String
+  isSubmitted: Boolean
 }
 
 input LoginStudentInput {

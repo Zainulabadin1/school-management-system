@@ -1,8 +1,8 @@
-import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { Field, ID, InputType } from "@nestjs/graphql";
 import { ObjectId } from "mongoose";
 
-@ObjectType()
-export class PaperDto{
+@InputType()
+export class PaperMarksInput{
     @Field(()=> ID)
     studentId: ObjectId
 
