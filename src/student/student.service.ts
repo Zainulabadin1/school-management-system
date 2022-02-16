@@ -5,13 +5,17 @@ import { Model } from 'mongoose';
 import { LoginStudentInput } from './inputs/loginStudent.input';
 
 import { Student } from '../entities/student.entity';
+import { Assignments } from '../entities/assignment.entity';
+import { Quizzes } from '../entities/quizzes.entity';
 
 @Injectable()
 export class StudentService {
 
   constructor(
     @InjectModel(Student.name) private readonly studentModel: Model<Student>,
-  ) { }
+    @InjectModel(Assignments.name) private readonly assignmentsModel: Model<Assignments>,
+    @InjectModel(Quizzes.name) private readonly quizzesModel: Model<Quizzes>,
+    ) { }
 
 
   async loginStudent(loginStudent: LoginStudentInput) {
@@ -50,7 +54,49 @@ export class StudentService {
     }
   }
 
+  async viewAssignmentMarks() {
+    try {
 
+      const result = await this.assignmentsModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: result
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
+
+  async viewQuizzMarks() {
+    try {
+
+      const result = await this.quizzesModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: result
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
 
 
 }
