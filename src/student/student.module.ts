@@ -6,6 +6,8 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { Student, StudentSchema } from '../entities/student.entity';
 import { Assignments, AssignmentsSchema } from '../entities/assignment.entity';
 import { Quizzes, QuizzesSchema } from '../entities/quizzes.entity';
+import { Timetable, TimetableSchema } from '../entities/timteable.entity';
+import { StudentAttendance, StudentAttendanceSchema } from '../entities/stuAttendance.entity';
 
 @Module({
   imports: [
@@ -16,7 +18,15 @@ import { Quizzes, QuizzesSchema } from '../entities/quizzes.entity';
       { name: Assignments.name, schema: AssignmentsSchema }]),
 
     MongooseModule.forFeature([
-      { name: Quizzes.name, schema: QuizzesSchema }])
+      { name: Quizzes.name, schema: QuizzesSchema }]),
+
+    MongooseModule.forFeature([
+      { name: Timetable.name, schema: TimetableSchema }]),
+
+    MongooseModule.forFeature([
+      { name: StudentAttendance.name, schema: StudentAttendanceSchema }])
+
+
   ],
   providers: [StudentResolver, StudentService]
 })

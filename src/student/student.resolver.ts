@@ -8,13 +8,15 @@ import { loginStudentResponseDto } from './ApiResponsesDto/loginStudentResponse.
 
 import { ViewAssignmentMarksResponseDto } from './ApiResponsesDto/viewAssignmentMarksResponse.dto';
 import { ViewQuizzesMarksResponseDto } from './ApiResponsesDto/viewQuizMarksResponse.dto';
+import { ViewTimetableResponseDto } from './ApiResponsesDto/viewTimetableResponse.dto';
+import { ViewAttendanceResponseDto } from './ApiResponsesDto/viewAttendanceResponse.dto';
 
 @Resolver()
 export class StudentResolver {
-  constructor(private readonly studentService: StudentService) {}
+  constructor(private readonly studentService: StudentService) { }
 
-  @Mutation(()=> loginStudentResponseDto)
-  loginStudent(@Args('loginStudentInput') loginStudentInput: LoginStudentInput){
+  @Mutation(() => loginStudentResponseDto)
+  loginStudent(@Args('loginStudentInput') loginStudentInput: LoginStudentInput) {
     return this.studentService.loginStudent(loginStudentInput);
   }
 
@@ -23,9 +25,19 @@ export class StudentResolver {
     return await this.studentService.viewAssignmentMarks();
   }
 
-  @Query(()=> ViewQuizzesMarksResponseDto)
+  @Query(() => ViewQuizzesMarksResponseDto)
   async viewQuizzMarks() {
     return await this.studentService.viewQuizzMarks();
   }
-  
+
+  @Query(() => ViewTimetableResponseDto)
+  async viewTimetable() {
+    return await this.studentService.viewtimetable();
+  }
+
+  @Query(() => ViewAttendanceResponseDto)
+  async viewAttendance() {
+    return await this.studentService.viewAttendance();
+  }
+
 }

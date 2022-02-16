@@ -7,6 +7,8 @@ import { LoginStudentInput } from './inputs/loginStudent.input';
 import { Student } from '../entities/student.entity';
 import { Assignments } from '../entities/assignment.entity';
 import { Quizzes } from '../entities/quizzes.entity';
+import { Timetable } from '../entities/timteable.entity';
+import { StudentAttendance } from '../entities/stuAttendance.entity';
 
 @Injectable()
 export class StudentService {
@@ -15,7 +17,9 @@ export class StudentService {
     @InjectModel(Student.name) private readonly studentModel: Model<Student>,
     @InjectModel(Assignments.name) private readonly assignmentsModel: Model<Assignments>,
     @InjectModel(Quizzes.name) private readonly quizzesModel: Model<Quizzes>,
-    ) { }
+    @InjectModel(Timetable.name) private readonly timetableModel: Model<Timetable>,
+    @InjectModel(StudentAttendance.name) private readonly stuAttendanceModel: Model<StudentAttendance>,
+  ) { }
 
 
   async loginStudent(loginStudent: LoginStudentInput) {
@@ -98,5 +102,48 @@ export class StudentService {
 
   }
 
+  async viewtimetable() {
+    try {
+
+      const result = await this.timetableModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: result
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
+
+  async viewAttendance() {
+    try {
+
+      const result = await this.stuAttendanceModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: result
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
 
 }
