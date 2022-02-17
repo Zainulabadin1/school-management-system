@@ -9,6 +9,7 @@ import { Assignments } from '../entities/assignment.entity';
 import { Quizzes } from '../entities/quizzes.entity';
 import { Timetable } from '../entities/timteable.entity';
 import { StudentAttendance } from '../entities/stuAttendance.entity';
+import { Papers } from '../entities/papers.entity';
 
 @Injectable()
 export class StudentService {
@@ -19,6 +20,7 @@ export class StudentService {
     @InjectModel(Quizzes.name) private readonly quizzesModel: Model<Quizzes>,
     @InjectModel(Timetable.name) private readonly timetableModel: Model<Timetable>,
     @InjectModel(StudentAttendance.name) private readonly stuAttendanceModel: Model<StudentAttendance>,
+    @InjectModel(Papers.name) private readonly papersModel: Model<Papers>,
   ) { }
 
 
@@ -128,6 +130,28 @@ export class StudentService {
     try {
 
       const result = await this.stuAttendanceModel.find();
+      {
+        let apiResponse = {
+          code: 200,
+          message: "Record found",
+          data: result
+        }
+        return apiResponse;
+      }
+    } catch (error) {
+      let apiResponse = {
+        code: 400,
+        message: error.message
+      }
+      return apiResponse
+    }
+
+  }
+
+  async viewpapermarks() {
+    try {
+
+      const result = await this.papersModel.find();
       {
         let apiResponse = {
           code: 200,

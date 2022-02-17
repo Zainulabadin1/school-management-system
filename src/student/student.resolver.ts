@@ -10,6 +10,7 @@ import { ViewAssignmentMarksResponseDto } from './ApiResponsesDto/viewAssignment
 import { ViewQuizzesMarksResponseDto } from './ApiResponsesDto/viewQuizMarksResponse.dto';
 import { ViewTimetableResponseDto } from './ApiResponsesDto/viewTimetableResponse.dto';
 import { ViewAttendanceResponseDto } from './ApiResponsesDto/viewAttendanceResponse.dto';
+import { ViewPaperMarksResponseDto } from './ApiResponsesDto/viewPaperMarksResponse.dto';
 
 @Resolver()
 export class StudentResolver {
@@ -38,6 +39,11 @@ export class StudentResolver {
   @Query(() => ViewAttendanceResponseDto)
   async viewAttendance() {
     return await this.studentService.viewAttendance();
+  }
+
+  @Query(() => ViewPaperMarksResponseDto)
+  async viewPaperMarks() {
+    return await this.studentService.viewpapermarks();
   }
 
 }

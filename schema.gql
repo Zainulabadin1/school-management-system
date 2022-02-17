@@ -314,6 +314,12 @@ type ViewAttendanceResponseDto {
   data: [StuAttendanceDto!]
 }
 
+type ViewPaperMarksResponseDto {
+  code: Float!
+  message: String!
+  data: [PaperDto!]
+}
+
 type loginAccountantResponseDto {
   code: Float!
   message: String!
@@ -419,6 +425,7 @@ type Query {
   viewQuizzMarks: ViewQuizzesMarksResponseDto!
   viewTimetable: ViewTimetableResponseDto!
   viewAttendance: ViewAttendanceResponseDto!
+  viewPaperMarks: ViewPaperMarksResponseDto!
   viewFee: ViewFeeRecordResponseDto!
   viewStudentFee(viewSingleFeeRecord: ViewFeeRecordInput!): ViewFeeRecordResponseDto!
   totalFeeCollected: totalFeeCollectedResponseDto!
